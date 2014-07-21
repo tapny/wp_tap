@@ -1,0 +1,304 @@
+.nav-wrapper {
+  position:fixed;
+  top:0;
+  left:0;
+  overflow:hidden;
+  width:$navWidth;
+
+  z-index:10;
+  height:100%;
+  @include prefix(transition,width $duration);
+  nav {
+    position:absolute;
+    top:0;
+    left:0;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    width:$navWidth*3 + 18px;
+    height:100%;
+    background:$grey;
+    h1 {
+      width:100%;
+      height:$navWidth;
+      margin:0 auto;
+      background:#ffffff;
+      @include respond-to(tablet) {height:64px;}
+      a {
+        display:block;
+        width:100%;
+        height:100%;}
+      span {
+        display:block;
+        @include prefix(transition,opacity $duration);
+        @include text-replace;
+        width:$navWidth;
+        height:100%;
+        background-image:url(../img/logo.png);
+        background-size:75%;
+        background-repeat:no-repeat;
+        background-position:50% 50%;
+        &:hover {
+          background-color:#fdfdfd;
+        }
+      }
+    }
+    a.close{
+      display:none;
+      height:64px;
+      position:absolute;
+      line-height:64px;
+      top:0;
+      right:10px;
+      @include font-label-small;
+      @include respond-to(phone) {display:block;}
+    }
+    ul.nav-primary {
+      display:block;
+      height:($navWidth) * 3;
+      margin-bottom:$margin;
+      @include respond-to(tablet) {height:64px*3;}
+      li {
+        > span {
+          @include font-label-small;   
+          @include prefix(transition,opacity $duration);       
+          color:rgba(#ffffff,.5);
+          display:block;
+          position:absolute;
+          z-index:2;
+          width:$navWidth;
+          text-align:center;
+          top:66px;
+          pointer-events:none;
+        }
+        display:block;
+        width:100%;
+        position:relative;
+        height:$navWidth;
+        // padding:0 10px 10px 10px;
+        @include respond-to(tablet) {
+          height:64px;
+        }
+        &.active {
+          background:rgba(#000000,.5);
+        }
+        a {
+          @include font-label-large;
+          color:rgba(#ffffff,.5);
+          display:block;
+          width:100%;
+          height:100%;
+          position:relative;
+          line-height:$navWidth;
+          text-indent:$navWidth;
+          @include respond-to(tablet) {
+            line-height:64px;
+          }
+
+          &::before {
+            @include prefix(transition,transform $duration ease-out);   
+            -webkit-transition:-webkit-transform $duration ease-out;
+            -moz-transition:-moz-transform $duration ease-out;
+            -o-transition:-o-transform $duration ease-out;
+            content:"";
+            position:absolute;
+            display:block;
+            width:40px;
+            height:40px;
+            top:50%;
+            left:30px;
+            margin-top:-30px;
+            background:url(../img/nav-icon-sprite.png);
+            background-size:100%;
+            opacity:.5;
+          }
+          &:hover {
+            background:$lime-dark;
+            color:#ffffff;
+            &::before {opacity:1;}
+          }
+          &.about {
+            &::before {background-position:0px 0px;}
+            &:hover {background:$green}
+          }
+          &.events {
+            &::before {background-position:0px -80px;}
+            &:hover {background:$teal-dark}
+          }
+          &.articles {
+            &::before {background-position:0px -40px;}
+            &:hover {background:$lime}
+          }
+        }
+      }
+    }
+
+    ul.nav-secondary {
+      pointer-events:none;
+      opacity:0;
+      @include prefix(transition,opacity $duration);
+      position:absolute;
+      li {
+        display:block;
+        width:100%;
+        height:48px;
+        overflow:hidden;
+        line-height:48px;
+        @include respond-to(phone) {height:32px;line-height:32px;}
+        a {
+          @include font-label;
+          opacity:.5;
+          display:block;
+          width:1000px;
+          height:100%;
+          padding:0 $margin*1.5;
+            color:#ffffff;
+          &:hover {
+            background:$green;
+            opacity:1;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    width:0;
+  }
+}
+.nav-wrapper.active {
+  width:320px;
+  nav {
+
+    ul.nav-primary {
+
+      li {
+        > span {
+          opacity:0;
+        }
+
+        a {
+
+          &::before {
+            @include prefix(transform,translate3d(0,10px,0));
+          }
+        }
+      }
+
+
+    }
+    h1 span{
+        width:$navWidth*3;
+        background-size:65%;
+        background-image:url(../img/logo-long.png);
+    }
+    ul.nav-secondary {
+      pointer-events:auto;
+      opacity:1;
+    }
+  }
+  + #container {
+    pointer-events:none;
+    overflow:hidden;
+    &::after {
+      pointer-events:auto;
+      opacity:1;
+    }
+  }
+}
+
+
+
+#hamburger {
+  position:relative;
+  display:none;
+  width:100%;
+  height:64px;
+  // background-image:url(../img/logo-long.png);
+  // background-size:240px;
+  // background-repeat:no-repeat;
+  // background-position:50% 50%;
+  z-index:9;
+
+  .burger {
+    @include prefix(transition,opacity $duration);
+    opacity:.5;
+    display:none;
+    position:fixed;
+    width:44px;
+    height:44px;
+    margin:10px;
+    background:#ffffff;
+    @include prefix(border-radius,4px);
+    z-index:99;
+    @include font-label-small;
+    text-align:center;
+    line-height:66px;
+    &::after,&::before {
+      content:"";
+      display:block;
+      position:absolute;
+      width:16px;
+      left:14px;
+    }
+    &::after {
+      top:13px;
+      height:3px;
+      background:#999999;
+    }
+    &::before {
+      top:8px;
+      height:7px;
+      border-top:3px solid #999999;
+      border-bottom:3px solid #999999;
+    }
+    &:hover {
+      opacity:1;
+    }
+  }
+
+
+    h1 {
+      width:100%;
+      height:100%;
+      margin:0 auto;
+      background:#ffffff;
+      a {
+        display:block;
+        width:100%;
+        height:100%;}
+      span {
+        display:block;
+        @include prefix(transition,opacity $duration);
+        @include text-replace;
+        width:100%;
+        height:100%;
+        background-repeat:no-repeat;
+        background-position:50% 50%;
+        background-size:80px;
+        background-image:url(../img/logo.png);
+
+        &:hover {
+          background-color:#fdfdfd;
+        }
+      }
+    }
+
+  @include respond-to(tablet) {
+    display:block;
+    a.burger {
+      display:block;
+    }
+  }
+  &.home {
+    display:block;
+    height:$navWidth;
+    @include respond-to(tablet) {
+      height:64px;
+    }
+  }
+}
+
+
+#hamburger.home.top + .nav-wrapper nav h1 span {
+  opacity:0;
+}

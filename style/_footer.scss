@@ -1,0 +1,75 @@
+footer {
+  background:$darkGrey;
+  padding:$margin*2 $margin $margin*2.5 $navWidth+$margin;
+  font-size:0;
+
+  @include respond-to(tablet) {
+    padding-left:$margin;
+  }
+
+  >h1,>p.description,>ul.nav,>ul.social-links{
+    display:inline-block;
+    vertical-align:middle;
+    padding-right:$margin*2;
+  }
+  h1 {
+    width:15%;
+    height:$navWidth/2;
+    a {
+      display:block;
+      @include text-replace;
+      width:100%;
+      height:100%;
+      background-image:url(../img/tap.png);
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:50% 50%;
+      opacity:.5;
+      &:hover {
+        opacity:1;
+      }
+    }
+  }
+  p.description{
+    @include font-text-small;
+    font-size:10px;
+    color:rgba(#ffffff,.5);
+    width:25%;
+    padding-right:$margin*2;
+    a {
+      color:rgba(#ffffff,.6);
+      text-decoration:underline;
+      &:hover {
+        color:rgba(#ffffff,.9);
+      }
+    }
+  }
+  ul.nav {
+    width:50%;
+    padding-right:0;
+    li {
+      display:inline-block;
+      width:33%;
+      a {
+        @include font-label-small;
+        display:block;
+        padding:$margin/4 0;
+        color:rgba(#ffffff,.5);
+        &:hover {color:#ffffff;}
+      }
+    }
+  }
+  ul.social-links {
+    width:10%;
+    overflow:hidden;
+    li {
+      display:block;
+      padding:$margin/4 0;
+      a {
+        @include font-label-small;
+        color:rgba(#ffffff,.5);
+        &:hover {color:#ffffff;}
+      }
+    }
+  }
+}

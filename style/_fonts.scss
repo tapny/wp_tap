@@ -1,0 +1,112 @@
+@mixin text-replace {
+  font-size:0;
+  text-indent:-9999999em;
+}
+
+//On White:
+$text: #333333;
+$text-dark: #000000;
+$text-light: #999999;
+
+//On Dark:
+$textDark: #ffffff;
+$textDark-dark: #666666;
+$textDark-light: #999999;
+
+@mixin font-head {
+  color:$text;
+  font-weight:300;
+  font-size:32px;
+  font-family:"Lato","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
+  @include respond-to(tablet) {font-size:28px;}
+  @include respond-to(phone) {font-size:24px;}
+}
+@mixin font-head-large {
+  @include font-head;
+  font-size:64px;
+  @include respond-to(tablet) {font-size:48px;}
+  @include respond-to(phone) {font-size:32px;}
+}
+@mixin font-head-small {
+  @include font-head;
+  font-size:24px;
+  @include respond-to(tablet) {font-size:20px;}
+  @include respond-to(phone) {font-size:18px;} 
+}
+
+@mixin font-title {
+  color:$text;
+  font-weight:500;
+  font-size:22px;
+  font-family:"Lato","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
+  @include respond-to(tablet) {font-size:18px;}
+  @include respond-to(phone) {font-size:16px;}
+}
+
+@mixin font-label {
+  font-family:"Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  color:$text-light;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:700;
+  font-size:12px;
+  // @include respond-to(tablet) {font-size:11px;}
+  // @include respond-to(phone) {font-size:10px;}
+}
+@mixin font-label-large {
+  @include font-label;
+  font-size:16px;
+  @include respond-to(tablet) {font-size:14px;}
+  @include respond-to(phone) {font-size:12px;}
+}
+@mixin font-label-small {
+  @include font-label;
+  font-size:9px;
+  @include respond-to(phone) {font-size:8px;}
+}
+
+@mixin font-text {
+  color:$text;
+  font-weight:300;
+  font-size:16px;
+  font-family:"Lato","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
+  @include pretty-text;
+  @include respond-to(tablet) {font-size:15px;}
+  @include respond-to(phone) {font-size:14px;}
+}
+@mixin font-text-large {
+  @include font-text;
+  font-size:22px;
+  @include respond-to(tablet) {font-size:20px;}
+  @include respond-to(phone) {font-size:18px;}
+}
+@mixin font-text-small {
+  @include font-text;
+  font-size:13px;
+  font-weight:400;
+  @include respond-to(tablet) {font-size:12px;}
+  @include respond-to(phone) {font-size:11px;}
+}
+
+@mixin font-alt {
+  font-family:"Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:400;
+  letter-spacing:0;
+}
+@mixin font-pullquote {
+  color:$text;
+  font-style:italic;
+  font-size:32px;
+  line-height:40px;
+  font-family: Georgia, Times, "Times New Roman", serif;  
+  @include pretty-text;
+  // @include respond-to(phone) {font-size:24px;}
+}
+
+
+.text-subtitle {
+  @include font-label;
+}
+.text-pullquote {
+  @include font-pullquote;
+}

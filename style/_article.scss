@@ -1,0 +1,107 @@
+.article-intro {
+  padding: $margin*3 $margin*4;
+  line-height:1.8em;
+  font-weight:300;
+  letter-spacing:.025em;
+  color:#000000;
+  background-color:#f0f0f0;
+  overflow:hidden;
+  h3,p,ul {
+    margin:0 auto $margin;
+    max-width:720px;
+    @include respond-to(tablet) {
+      margin:0 $margin $margin;
+    }
+  }
+  *:last-child {
+    margin-bottom:$margin/4;
+  }
+  div.sidenote {
+    margin-left:0;
+    font-size:14px;
+    @include respond-to(phone) {padding-left:$margin;padding-right:$margin}
+
+    > p {
+      display:block;
+      border-left:3px solid $green;
+      margin-bottom:$margin;
+      padding:0 $margin 0 $margin/2;
+      line-height:20px;
+      span {
+        display:block;
+      }
+      &.text-pullquote {
+        font-size:32px;
+        line-height:40px;
+        &::before {
+          content:"\201C";
+        }
+        &::after {
+          content:"\201D";
+        }
+      }
+    }
+    &.full {
+      width:100%;
+      margin:$margin*2 0 $margin*2 0;
+      @include respond-to(phone) {padding-left:$margin;padding-right:$margin}
+      > p {
+        margin:0;
+        padding:0;
+        border-left:none;
+        color:#aaaaaa;
+        max-width:100%;
+      }
+    }
+    &.left {
+      float:left;
+      margin:0 $margin $margin 0;
+      max-width:$colWidth;
+      @include respond-to(phone) {margin:0 $margin; width:100%;max-width:100%;}
+    }
+    &.right {
+      float:right;
+      margin:0 0 $margin $margin;
+      max-width:$colWidth;
+      @include respond-to(phone) {margin:0 $margin; width:100%;max-width:100%;}
+    }
+  }
+  img {
+    max-width:100%;
+  }
+  img.full {
+    width:100%;
+    margin:0 0 $margin 0;
+  }
+  img.right, img.left {
+    max-width:$colWidth;
+  }
+  img.right {margin:0 0 $margin $margin;}
+
+  img.left {margin:0 $margin $margin 0;}
+
+  h3 {
+    @include font-head-small;
+    text-align:center;
+  }
+
+  @include respond-to(tablet) {
+    padding:$margin 0;
+    // h3,p,ul {margin:0 auto $margin;}
+    img.full {margin:0;}
+  }
+}
+
+.article-body {
+  @extend .article-intro;
+  background:#ffffff;
+  padding:$margin*2;
+  font-weight:400;
+  @include respond-to(phone) {padding:0;}
+
+  .question {
+    font-weight:700;
+    margin-bottom:0;
+  }
+}
+

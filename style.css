@@ -1,0 +1,16 @@
+/*
+ Theme Name:   TAP-NY Wordpress Theme
+ Theme URI:    http://tap-ny.org;
+ Author:       Michael Wang
+ Author URI:   http://mkwng.com
+ Description:  Custom built Wordpress theme for Taiwanese American Professionals - New York
+ Version:      1.0.0
+ Tags:         black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
+ Text Domain:  wp_tap
+
+*/
+
+@import url("style/vendor/pure.css");
+@import url("style/main.css");
+
+
