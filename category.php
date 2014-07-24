@@ -38,12 +38,8 @@ $args = array(
         <div class="section-page">
 
     <?
-      $event_query = new WP_Query(array(
-        'post_type' => 'post'
-      ));
-      if ( $event_query->have_posts() ) :
-        // Start the Loop.
-        while ( $event_query->have_posts() ) : $event_query->the_post();
+      if ( have_posts() ) :
+        while ( have_posts() ) : the_post();
 
           get_template_part( 'content', 'posts', get_post_format() );
 

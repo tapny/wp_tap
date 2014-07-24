@@ -6,6 +6,7 @@
 
 get_header(); 
 
+$is_event_page = $post->ID == get_page_by_title('Events')->ID;
 
 $taxonomy     = 'tf_eventcategory';
 $orderby      = 'count'; 
@@ -29,7 +30,7 @@ $args = array(
   <h1>
     Events
     <ul class="categories">
-      <li><a href="<?php get_post_type_archive_link('tf_events'); ?>">All Categories</a></li>
+      <li <?php if($is_event_page): ?>class="current-cat"<?php endif; ?>><a href="<?php echo get_page_link(get_page_by_title('Events')->ID); ?>">All Categories</a></li>
       <?php wp_list_categories( $args ); ?>
     </ul>
   </h1>
@@ -38,23 +39,22 @@ $args = array(
   <div class="container-inner">
     <section class="events events-page">
     	<?
-      $event_query = new WP_Query(array(
-        'post_type' => 'tf_events'
-      ));
-			if ( $event_query->have_posts() ) :
-				// Start the Loop.
-				while ( $event_query->have_posts() ) : $event_query->the_post();
-
+      if ($is_event_page) :
+        $event_query = new WP_Query(array('post_type' => 'tf_events'));
+        if ( $event_query->have_posts() ) :
+          while ( $event_query->have_posts() ) : $event_query->the_post();
+            get_template_part( 'content', 'events', get_post_format() );
+          endwhile;
+        endif;  
+      elseif ( have_posts() ) :
+        while ( have_posts() ) : the_post();
 					get_template_part( 'content', 'events', get_post_format() );
-
 				endwhile;
 				// Previous/next post navigation.
 				// twentyfourteen_paging_nav();
-
 			else :
 				// If no content, include the "No posts found" template.
 				// get_template_part( 'content', 'none' );
-
 			endif;
 		?>
     </section>
