@@ -6,10 +6,11 @@
 get_header(); ?>
 
 
+
   <?php
       if ( have_posts() ) :
         while ( have_posts() ) : the_post();
-          get_template_part( 'content', get_post_format() );
+          get_template_part( 'content', 'article', get_post_format() );
           print_r($post);
           print_r(get_post_custom());
         endwhile;
@@ -21,9 +22,9 @@ get_header(); ?>
       endif;
     ?>
 
-  </div>
-
   
+
+
 
 <?php
 get_sidebar();

@@ -1,14 +1,9 @@
 <?php
-/**
- * The Header for our theme
- *
- * Displays all of the <head> section and everything up till <div id="main">
- *
- * @package WordPress
- * @subpackage wp_tap
- * @since TAP-NY
- */
-?><!DOCTYPE html>
+/*
+  Template Name: Header
+*/
+?>
+<!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
 <![endif]-->
@@ -49,27 +44,15 @@
 		);
 		wp_nav_menu( $primarymenu ); 
 
+    $secondarymenu = array (
+      'theme_location' => 'tapny_secondary_menu',
+      'container' => '',
+      'menu_class' => 'nav-secondary',
+    );
+    wp_nav_menu( $secondarymenu );
 	?>
 
-<!--     <ul class="nav-primary">
-      <li>
-        <span>About</span>
-        <a class="about" data-name="About" href="#">About</a></li>
-      <li>
-        <span>Articles</span>
-        <a class="articles" data-name="Articles" href="#">Articles</a></li>
-      <li>
-        <span>Events</span>
-        <a class="events" data-name="Events" href="#">Events</a></li>
-    </ul> -->
 
-    <ul class="nav-secondary">
-      <li><a href="default.html">Careers</a></li>
-      <li><a href="default.html">Newsletter</a></li>
-      <li><a href="default.html">Get Involved</a></li>
-      <li><a href="default.html">Sponsors + Donors</a></li>
-      <li><a href="default.html">Contact Us</a></li>
-    </ul>
   </nav>
   </div>
 

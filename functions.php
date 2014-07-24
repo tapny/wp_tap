@@ -1,16 +1,17 @@
 <?php
-
-
+/**
+ * TAP-NY functions and definitions
+ */
+add_theme_support( 'post-thumbnails' ); 
 function create_custom_menus() {
   register_nav_menus(array(
 	'tapny_primary_menu' => __( 'Big buttons shown in primary menu'),
 	'tapny_secondary_menu' => __( 'Secondary menu that is hidden until revealed'),
-	'tapny_footer_menu' => __( 'Items available in the footer')
+	'tapny_footer_menu' => __( 'Items available in the footer'),
+    'tapny_social_menu' => __( 'Social available in the footer')
   ));
 }
 add_action( 'init', 'create_custom_menus' );
-
-
 
 /**
  * Enqueue scripts and styles for the front end.
@@ -28,91 +29,6 @@ function tapny_scripts() {
 	wp_enqueue_script( 'tapny-script', get_template_directory_uri() . '/js/main.js', array( 'jquery' ) );
 }
 add_action( 'wp_enqueue_scripts', 'tapny_scripts' );
-
-
-/**
- * Create a nav menu with very basic markup.
- *
- * @author Thomas Scholz http://toscho.de
- * @version 1.0
- */
-class T5_Nav_Menu_Walker_Simple extends Walker_Nav_Menu
-{
-	/**
-	 * Start the element output.
-	 *
-	 * @param  string $output Passed by reference. Used to append additional content.
-	 * @param  object $item   Menu item data object.
-	 * @param  int $depth     Depth of menu item. May be used for padding.
-	 * @param  array $args    Additional strings.
-	 * @return void
-	 */
-	public function start_el( &$output, $item, $depth, $args )
-	{
-		// print_r($item);
-		$output     .= '<li>';
-		$output 	.= '<span>'.apply_filters( 'the_title', $item->title, $item->ID ).'</span>';
-		$attributes  = '';
- 
-		! empty ( $item->attr_title )
-			// Avoid redundant titles
-			and $item->attr_title !== $item->title
-			and $attributes .= ' title="' . esc_attr( $item->attr_title ) .'"';
- 
-		! empty ( $item->url )
-			and $attributes .= ' href="' . esc_attr( $item->url ) .'"';
- 
-		$attributes .= ' class="'.$item->classes[0].'"';
-
-		$attributes  = trim( $attributes );
-		$title       = apply_filters( 'the_title', $item->title, $item->ID );
-		$item_output = "$args->before<a $attributes>$args->link_before$title</a>"
-						. "$args->link_after$args->after";
- 
-		// Since $output is called by reference we don't need to return anything.
-		$output .= apply_filters(
-			'walker_nav_menu_start_el'
-			,   $item_output
-			,   $item
-			,   $depth
-			,   $args
-		);
-	}
- 
-	/**
-	 * @see Walker::start_lvl()
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @return void
-	 */
-	public function start_lvl( &$output )
-	{
-		$output .= '<ul class="sub-menu">';
-	}
- 
-	/**
-	 * @see Walker::end_lvl()
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @return void
-	 */
-	public function end_lvl( &$output )
-	{
-		$output .= '</ul>';
-	}
- 
-	/**
-	 * @see Walker::end_el()
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @return void
-	 */
-	function end_el( &$output )
-	{
-		$output .= '</li>';
-	}
-}
-
 
 
 /* ------------------- THEME FORCE ---------------------- */
@@ -168,7 +84,7 @@ $args = array(
     'capability_type' => 'post',
     'hierarchical' => false,
     'rewrite' => array( "slug" => "events" ),
-    'supports'=> array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'page-attributes') ,
+    'supports'=> array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes') ,
     'show_in_nav_menus' => true,
     'taxonomies' => array( 'tf_eventcategory', 'post_tag'),
 	'menu_position'       => 5
@@ -307,6 +223,9 @@ function tf_events_meta () {
     $meta_ed = $custom["tf_events_enddate"][0];
     $meta_st = $meta_sd;
     $meta_et = $meta_ed;
+    $meta_vn = $custom["tf_events_venue"][0];
+    $meta_va = $custom["tf_events_address"][0];
+    $meta_eb = $custom["tf_events_eventbrite"][0];
 
     // - grab wp time format -
 
@@ -334,10 +253,13 @@ function tf_events_meta () {
     ?>
     <div class="tf-meta">
         <ul>
+            <li><label>Venue Name</label><input name="tf_events_venue" value="<?php echo $meta_vn; ?>" /></li>
+            <li><label>Venue Address</label><textarea name="tf_events_address" rows="3"><?php echo $meta_va; ?></textarea></li>
             <li><label>Start Date</label><input name="tf_events_startdate" class="tfdate" value="<?php echo $clean_sd; ?>" /></li>
             <li><label>Start Time</label><input name="tf_events_starttime" value="<?php echo $clean_st; ?>" /><em>Use 24h format (7pm = 19:00)</em></li>
             <li><label>End Date</label><input name="tf_events_enddate" class="tfdate" value="<?php echo $clean_ed; ?>" /></li>
             <li><label>End Time</label><input name="tf_events_endtime" value="<?php echo $clean_et; ?>" /><em>Use 24h format (7pm = 19:00)</em></li>
+            <li><label>Eventbrite EID</label><input name="tf_events_eventbrite" value="<?php echo $meta_eb; ?>" /></li>
         </ul>
     </div>
     <?php
@@ -376,6 +298,24 @@ function save_tf_events(){
         endif;
         $updateendd = strtotime ( $_POST["tf_events_enddate"] . $_POST["tf_events_endtime"]);
         update_post_meta($post->ID, "tf_events_enddate", $updateendd );
+
+    if(!isset($_POST["tf_events_venue"])):
+        return $post;
+        endif;
+        $updatevenue = $_POST["tf_events_venue"];
+        update_post_meta($post->ID, "tf_events_venue", $updatevenue );
+
+    if(!isset($_POST["tf_events_address"])):
+        return $post;
+        endif;
+        $updateaddress = $_POST["tf_events_address"];
+        update_post_meta($post->ID, "tf_events_address", $updateaddress );
+
+    if(!isset($_POST["tf_events_eventbrite"])):
+        return $post;
+        endif;
+        $updateeventbrite = $_POST["tf_events_eventbrite"];
+        update_post_meta($post->ID, "tf_events_eventbrite", $updateeventbrite );
 
 }
 
@@ -431,3 +371,53 @@ add_action( 'admin_print_styles-post-new.php', 'events_styles', 1000 );
 add_action( 'admin_print_scripts-post.php', 'events_scripts', 1000 );
 add_action( 'admin_print_scripts-post-new.php', 'events_scripts', 1000 );
 
+
+class T5_Nav_Menu_Walker_Simple extends Walker_Nav_Menu
+{
+
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"sub-menu\">\n";
+    }
+
+    function end_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent</ul>\n";
+    }
+
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+        $output     .= '<li>';
+        $output     .= '<span>'.apply_filters( 'the_title', $item->title, 1, $item->ID, $id ).'</span>';
+        $attributes  = '';
+ 
+        ! empty ( $item->attr_title )
+            // Avoid redundant titles
+            and $item->attr_title !== $item->title
+            and $attributes .= ' title="' . esc_attr( $item->attr_title ) .'"';
+ 
+        ! empty ( $item->url )
+            and $attributes .= ' href="' . esc_attr( $item->url ) .'"';
+ 
+        $attributes .= ' class="'.$item->classes[0].'"';
+
+        $attributes  = trim( $attributes );
+        $title       = apply_filters( 'the_title', $item->title, $item->ID );
+        $item_output = "$args->before<a $attributes>$args->link_before$title</a>"
+                        . "$args->link_after$args->after";
+ 
+        // Since $output is called by reference we don't need to return anything.
+        $output .= apply_filters(
+            'walker_nav_menu_start_el'
+            ,   $item_output
+            ,   $item
+            ,   $depth
+            ,   $args
+        );
+    }
+
+
+    function end_el( &$output, $item, $depth = 0, $args = array() ) {
+        $output .= "</li>\n";
+    }
+}

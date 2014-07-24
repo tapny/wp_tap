@@ -66,11 +66,15 @@
         &:hover {
           color:#aaaaaa;
         }
-        &.active {
+      }
+
+      &.current-cat {
+        a {
           background:#242424;
           color:#dddddd;
         }
       }
+
     }
   }
 }

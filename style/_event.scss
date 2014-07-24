@@ -1,3 +1,12 @@
+.events-page {
+  .article-date {
+    margin-right:$margin;
+  }
+  .article-text {
+    padding:$margin;
+  }
+}
+
 .events {
   article.event {
     height:$articleHeight/1.5;
