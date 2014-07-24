@@ -1,4 +1,7 @@
-<?php $custom_fields = get_post_custom(); ?>
+<?php 
+$custom_fields = get_post_custom(); 
+$custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events_address'][0]));
+?>
   <h1 class="breadcrumb">
     <ul>
       <li><a href="<?php echo get_page_link(get_page_by_title('Events')->ID); ?>">Events</a></li>
@@ -38,8 +41,8 @@
   </section>
 
   <section class="event-details">
-    <div class="left">
-      <a href="http://maps.google.com/?q=<?php echo trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events_address'][0])); ?>" target="_blank">Get Directions</a>
+    <div class="left" style="background-image:url(<?php echo esc_url('http://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7C'.$custom_address.'&zoom=13&size=600x600&key=AIzaSyCLDq0xsecSmyp0SHATTYW20XF-p5OUq0c'); ?>);">
+      <a href="http://maps.google.com/?q=<?php echo $custom_address; ?>" target="_blank">Get Directions</a>
     </div>
     <div class="right">
       <div class="inner">
