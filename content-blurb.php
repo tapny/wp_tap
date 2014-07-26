@@ -6,7 +6,7 @@
 
           <article class="link">
             <div class="article-img">
-              <a href="<?php echo esc_url( get_permalink() ); ?>"><img src="img/2.jpg" alt=""></a>
+              <a class="article-img-thumb" href="<?php echo esc_url( get_permalink() ); ?>" style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'small')[0]; ?>);"></a>
             </div>
             <div class="article-text">
             	<?php

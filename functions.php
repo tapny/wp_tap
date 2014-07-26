@@ -30,6 +30,35 @@ function tapny_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tapny_scripts' );
 
+// Filter function
+function add_contact_fields($profile_fields) {
+    // Adding fields
+    $profile_fields['title'] = 'Title';
+    return $profile_fields;
+}
+// Adding the filter
+add_filter('user_contactmethods', 'add_contact_fields');
+
+function get_avatar_url($get_avatar){
+    preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+    return $matches[1];
+}
+function get_thumbnail_url($get_avatar){
+    preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+    return $matches;
+}
+
+add_image_size( 'blurbthumb1', 276, 100, true );
+add_image_size( 'blurbthumb2', 100, 100, true );
+
+function custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+function new_excerpt_more( $more ) {
+    return '&hellip;';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 
 /* ------------------- THEME FORCE ---------------------- */
 

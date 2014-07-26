@@ -857,7 +857,9 @@ section.events, section.articles {
           display: block;
           width: 100%;
           height: 100%;
-          overflow: hidden; }
+          overflow: hidden;
+          background-size: cover;
+          background-position: 50% 50%; }
           section.events .section-list article .article-img a img, section.events .section-page article .article-img a img, section.articles .section-list article .article-img a img, section.articles .section-page article .article-img a img {
             width: 100%;
             min-height: 100px; }

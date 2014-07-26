@@ -5,6 +5,7 @@
 
 get_header(); 
 
+$is_article_page = $post->ID == get_page_by_title('Articles')->ID;
 
 $orderby      = 'count'; 
 $show_count   = 0;      // 1 for yes, 0 for no
@@ -26,7 +27,7 @@ $args = array(
   <h1>
     Articles
     <ul class="categories">
-      <li><a href="<?php get_post_type_archive_link('tf_events'); ?>">All Categories</a></li>
+      <li <?php if($is_article_page): ?>class="current-cat"<?php endif; ?>><a href="<?php echo get_page_link(get_page_by_title('Articles')->ID); ?>">All Categories</a></li>
       <?php wp_list_categories( $args ); ?>
     </ul>
   </h1>
@@ -38,19 +39,22 @@ $args = array(
         <div class="section-page">
 
     <?
-      if ( have_posts() ) :
+      if ($is_article_page) :
+        $article_query = new WP_Query(array('post_type' => 'post'));
+        if ( $article_query->have_posts() ) :
+          while ( $article_query->have_posts() ) : $article_query->the_post();
+            get_template_part( 'content', 'posts', get_post_format() );
+          endwhile;
+        endif;  
+      elseif ( have_posts() ) : 
         while ( have_posts() ) : the_post();
-
           get_template_part( 'content', 'posts', get_post_format() );
-
         endwhile;
         // Previous/next post navigation.
         // twentyfourteen_paging_nav();
-
       else :
         // If no content, include the "No posts found" template.
         // get_template_part( 'content', 'none' );
-
       endif;
     ?>
 
@@ -83,3 +87,9 @@ $args = array(
         </div>
       </div>
     </section>
+
+
+
+<?php
+get_sidebar();
+get_footer();

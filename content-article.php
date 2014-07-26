@@ -11,11 +11,10 @@
       <li><a><?php the_title() ?></a></li>
     </ul>
   </h1>
-
   <section class="hero">
     <div class="hero-slide">
       <ul>
-        <li style="background-image:url(img/article1.jpg);">
+        <li style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'large')[0]; ?>);">
           <span class="hero-outer">
             <div class="hero-inner">
               <h4><?php the_title() ?></h4>
