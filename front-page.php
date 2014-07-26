@@ -3,7 +3,10 @@
   Template Name: Front page
 */
 
-get_header(); ?>
+get_header();
+get_template_part('hero');
+get_sidebar();
+ ?>
 
   <div class="container-inner">
     <section class="events">
@@ -12,7 +15,7 @@ get_header(); ?>
         <div class="section-controls">
           <a class="prev" href="#">Previous</a>
           <a class="next" href="#">Next</a>
-          <a class="all" href="#">View All</a>
+          <a class="all" href="<?php echo get_page_link(get_page_by_title('Events')->ID); ?>">View All</a>
         </div>
         <div class="section-list">
 
@@ -58,7 +61,7 @@ get_header(); ?>
         <div class="section-controls">
           <a class="prev" href="#">Previous</a>
           <a class="next" href="#">Next</a>
-          <a class="all" href="#">View All</a>
+          <a class="all" href="<?php echo get_page_link(get_page_by_title('Articles')->ID); ?>">View All</a>
         </div>
         <div class="section-list">
     <?php
@@ -84,8 +87,13 @@ get_header(); ?>
 
   </div>
 
+  <section class="about">
+    <h2>Hold up&hellip; What is TAP?</h2>
+    <p>Taiwanese American Professionals (TAP) enhances the Taiwanese-American community by networking individuals interested in professional and career development, while emphasizing the preservation of Taiwanese American identity.</p>
+    <a class="button" href="<?php echo get_page_link(get_page_by_title('About')->ID); ?>">Learn more</a>
+  </section>
+
 
 
 <?php
-get_sidebar();
 get_footer();

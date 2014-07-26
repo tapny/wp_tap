@@ -2,10 +2,18 @@
 /*
 	Template Name: Content Blurb on Home Page
 */
+
+  $has_image_id = get_post_thumbnail_id();
 ?>
 
           <article class="link">
-            <div class="article-img" style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'small')[0]; ?>)">
+            <div class="article-img" style="background-image:url(<?php 
+            if($has_image_id){
+              echo wp_get_attachment_image_src($has_image_id,'small')[0].')"'; 
+            } else {
+              echo get_template_directory_uri().'/img/article.png); background-size:contain;"';
+            }
+            ?>>
               <a href="<?php echo esc_url( get_permalink() ); ?>"></a>
             </div>
             <div class="article-text">

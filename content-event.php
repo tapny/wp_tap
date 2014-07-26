@@ -18,7 +18,7 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
   <section class="hero">
     <div class="hero-slide">
       <ul>
-        <li>
+        <li style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'large')[0]; ?>);">
           <span class="hero-outer">
             <div class="hero-inner">
 
@@ -41,10 +41,12 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
   </section>
 
   <section class="event-details">
-    <div class="left" style="background-image:url(<?php echo esc_url('http://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7C'.$custom_address.'&zoom=13&size=600x600&key=AIzaSyCLDq0xsecSmyp0SHATTYW20XF-p5OUq0c'); ?>);">
+  <?php if($custom_address): ?>
+    <div class="left" style="background-image:url(<?php echo esc_url('http://maps.googleapis.com/maps/api/staticmap?markers=color:0x009c83%7C'.$custom_address.'&zoom=13&size=600x600&key=AIzaSyCLDq0xsecSmyp0SHATTYW20XF-p5OUq0c'); ?>);">
       <a href="http://maps.google.com/?q=<?php echo $custom_address; ?>" target="_blank">Get Directions</a>
     </div>
-    <div class="right">
+  <?php endif; ?>
+    <div class="<?php if($custom_address): ?>right<?php else: ?>full<?php endif; ?>">
       <div class="inner">
       <p class="label">When</p>
       <p class="details">
@@ -57,11 +59,13 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
         endif;
         ?>
       </p>
+      <?php if($custom_address): ?>
       <p class="label">Where</p>
       <p class="details">
         <?php echo $custom_fields['tf_events_venue'][0]; ?><br />
         <?php echo nl2br($custom_fields['tf_events_address'][0]); ?>
       </p>
+    <?php endif; ?>
     </div>
   </div>
   </section>

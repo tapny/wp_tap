@@ -11,8 +11,6 @@ get_header(); ?>
       if ( have_posts() ) :
         while ( have_posts() ) : the_post();
           get_template_part( 'content', 'article', get_post_format() );
-          print_r($post);
-          print_r(get_post_custom());
         endwhile;
         // Previous/next post navigation.
         // twentyfourteen_paging_nav();

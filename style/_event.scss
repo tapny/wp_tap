@@ -79,7 +79,7 @@
 .event-details {
   position:relative;
   overflow:hidden;
-  .left,.right{
+  .left,.right,.full{
     float:left;
     width:49.999%;
     height:$articleHeight;
@@ -108,6 +108,14 @@
     }
   }
   .right {
+    .details{
+      @include font-text-large;
+      margin-bottom:24px;
+    }
+  }
+  .full {
+    width:100%;
+    height:$articleHeight/2;
     .details{
       @include font-text-large;
       margin-bottom:24px;

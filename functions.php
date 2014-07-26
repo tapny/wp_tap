@@ -60,6 +60,33 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
+
+function excerpt($limit) {
+      $excerpt = explode(' ', get_the_excerpt(), $limit);
+      if (count($excerpt)>=$limit) {
+        array_pop($excerpt);
+        $excerpt = implode(" ",$excerpt).'...';
+      } else {
+        $excerpt = implode(" ",$excerpt);
+      } 
+      $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
+      return $excerpt;
+    }
+
+    function content($limit) {
+      $content = explode(' ', get_the_content(), $limit);
+      if (count($content)>=$limit) {
+        array_pop($content);
+        $content = implode(" ",$content).'...';
+      } else {
+        $content = implode(" ",$content);
+      } 
+      $content = preg_replace('/\[.+\]/','', $content);
+      $content = apply_filters('the_content', $content); 
+      $content = str_replace(']]>', ']]&gt;', $content);
+      return $content;
+    }
+
 /* ------------------- THEME FORCE ---------------------- */
 
 /*
@@ -79,7 +106,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 add_action('admin_init', 'tf_functions_css');
 
 function tf_functions_css() {
-	wp_enqueue_style('tf-functions-css', get_bloginfo('template_directory') . '/css/tf-functions.css');
+	wp_enqueue_style('tf-functions-css', get_bloginfo('template_directory') . '/style/vendor/tf-functions.css');
 }
 
 // 1. Custom Post Type Registration (Events)
@@ -115,7 +142,7 @@ $args = array(
     'rewrite' => array( "slug" => "events" ),
     'supports'=> array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes') ,
     'show_in_nav_menus' => true,
-    'taxonomies' => array( 'tf_eventcategory', 'post_tag'),
+    'taxonomies' => array('post_tag','tf_eventcategory'),
 	'menu_position'       => 5
 );
 
@@ -389,8 +416,8 @@ function events_scripts() {
     global $post_type;
     if( 'tf_events' != $post_type )
     return;
-    wp_enqueue_script('jquery-ui', get_bloginfo('template_url') . '/js/jquery-ui-1.8.9.custom.min.js', array('jquery'));
-    wp_enqueue_script('ui-datepicker', get_bloginfo('template_url') . '/js/jquery.ui.datepicker.min.js');
+    wp_enqueue_script('jquery-ui', get_bloginfo('template_url') . '/js/jquery-ui-1.11.0.js', array('jquery'));
+    wp_enqueue_script('ui-datepicker', get_bloginfo('template_url') . '/js/jquery.ui.datepicker.js');
     wp_enqueue_script('custom_script', get_bloginfo('template_url').'/js/pubforce-admin.js', array('jquery'));
 }
 

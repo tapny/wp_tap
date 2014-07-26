@@ -1,3 +1,4 @@
+;
 /*
  * jQuery UI Datepicker 1.8.9
  *

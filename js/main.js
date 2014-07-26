@@ -1,3 +1,4 @@
+;
 $j = jQuery.noConflict();
 
 winTop = 0;
@@ -91,6 +92,55 @@ updateScroll = function() {
 
 if($j("#wpadminbar").length) {
   $j(".nav-wrapper").css("top","32px");
+}
+
+// Hero slider 
+var $slideshow = $j(".hero-slide");
+var $slideshowItems = $slideshow.find("li");
+if($slideshowItems.length > 1) {
+  $j(".hero").css("border-bottom","none");
+  var currentSlide = 0;
+  var timer;
+  var duration = 7500;
+  var $progressBar = $j(".progress");
+
+  var makeActive = function(i) {
+    
+    $progressBar.stop().css(
+      {width:"0px",top:$slideshow.height()-5+"px"}
+    ).animate(
+      {width:$slideshow.width()},duration
+    );
+    $slideshowItems.removeClass("active next prev");
+    $slideshowItems.eq(i%$slideshowItems.length).addClass("active");
+    $slideshowItems.eq((i+1)%$slideshowItems.length).addClass("next");
+    $slideshowItems.eq((i-1)%$slideshowItems.length).addClass("prev");
+    clearTimeout(timer);
+    timer = setTimeout(progressSlide,duration);
+  }
+  var progressSlide = function() {
+    currentSlide += 1;
+    makeActive(currentSlide);
+    clearTimeout(timer);
+    timer = setTimeout(progressSlide,duration);
+  }
+
+  $slideshow.find("a.prev").click(function() {
+    currentSlide-=1;
+    makeActive(currentSlide);
+    clearTimeout(timer);
+    timer = setTimeout(progressSlide,duration);
+    return false;
+  });
+  $slideshow.find("a.next").click(function() {
+    currentSlide+=1;
+    makeActive(currentSlide);
+    clearTimeout(timer);
+    timer = setTimeout(progressSlide,duration);
+    return false;
+  });
+
+  makeActive(currentSlide);
 }
 
 });
