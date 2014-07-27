@@ -3,17 +3,17 @@ footer {
   padding:$margin*2 $margin $margin*2.5 $navWidth+$margin;
   font-size:0;
 
-  @include respond-to(tablet) {
-    padding-left:$margin;
-  }
-
-  >h1,>p.description,>ul.nav,>ul.social-links{
+  > div{
     display:inline-block;
     vertical-align:middle;
-    padding-right:$margin*2;
   }
+  .col-1 {width:25%}
+  .col-2 {width:25%}
+  .col-3 {width:33%}
+  .col-4 {width:17%}
+
   h1 {
-    width:15%;
+    width:75%;
     height:$navWidth/2;
     a {
       display:block;
@@ -34,7 +34,6 @@ footer {
     @include font-text-small;
     font-size:10px;
     color:rgba(#ffffff,.5);
-    width:25%;
     padding-right:$margin*2;
     a {
       color:rgba(#ffffff,.6);
@@ -45,31 +44,43 @@ footer {
     }
   }
   ul.nav {
-    width:50%;
     padding-right:0;
     li {
       display:inline-block;
-      width:33%;
+      width:50%;
+      vertical-align:middle;
       a {
         @include font-label-small;
         display:block;
-        padding:$margin/4 0;
+        padding:$margin/4;
+        height:30px;
         color:rgba(#ffffff,.5);
         &:hover {color:#ffffff;}
       }
     }
   }
   ul.social-links {
-    width:10%;
     overflow:hidden;
     li {
       display:block;
       padding:$margin/4 0;
+      vertical-align:middle;
       a {
         @include font-label-small;
+        padding:$margin/4;
+        height:30px;
         color:rgba(#ffffff,.5);
         &:hover {color:#ffffff;}
       }
     }
   }
+
+  @include respond-to(tablet) {
+    padding-left:$margin;
+    .col-1 {width:33%; margin-bottom:$margin*2;}
+    .col-2 {width:67%; margin-bottom:$margin*2;}
+    .col-3 {width:67%}
+    .col-4 {width:33%}
+  }
+
 }

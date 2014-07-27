@@ -37,7 +37,7 @@ $j(document).ready(function() {
   scrollFun();
   $j(window).bind("scroll resize",function() {
     scrollFun();
-  $progressBar.css({top:$slideshow.height()-5+"px"});
+  if($progressBar && $progressBar.length)$progressBar.css({top:$slideshow.height()-5+"px"});
   });
 
 
@@ -83,7 +83,6 @@ $j(".box").click(function() {
 
 
 $j(".newsletter-form").find("input").focus(function() {
-  console.log("test");
   $j(".newsletter").addClass("active");
 });
 
@@ -158,7 +157,6 @@ $sidebarTabs.find("a").click(function() {
   $sidebarLists.removeClass("active");
   $t.addClass("active");
   $sidebarLists.eq(i).addClass("active");
-  console.log(i);
   return false;
 });
 

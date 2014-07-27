@@ -97,7 +97,7 @@
   background:#ffffff;
   padding:$margin*2;
   font-weight:400;
-  @include respond-to(phone) {padding:0;}
+  @include respond-to(phone) {padding:$margin/2;}
 
   .question {
     font-weight:700;

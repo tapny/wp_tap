@@ -96,8 +96,8 @@ $textDark-light: #999999;
 @mixin font-pullquote {
   color:$text;
   font-style:italic;
-  font-size:32px;
-  line-height:40px;
+  font-size:28px;
+  line-height:30px;
   font-family: Georgia, Times, "Times New Roman", serif;  
   @include pretty-text;
   // @include respond-to(phone) {font-size:24px;}

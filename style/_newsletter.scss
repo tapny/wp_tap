@@ -14,12 +14,8 @@
     display:inline-block;
     vertical-align:middle;
   }
-  .col-1 {
-    width:20%;
-  }
-  .col-2 {
-    width:30%;
-  }
+  .col-1 { width:$margin + 200px; }
+  .col-2 { width:2*$margin + 400px; }
   .col-3 {
     width:100%;
     text-align:center;
@@ -41,8 +37,9 @@
   }
 
   form {
-    width:100%;
-    margin-bottom:$margin/2;
+    width: $margin*3 + 600px ;
+    margin:$margin/2 auto;
+    text-align:left;
     input {
       vertical-align:middle;
       &:focus{
@@ -50,25 +47,28 @@
         border:3px solid $green-light;
       }
     }
+    input.email{background-image:url(../img/form-email.png);}
+    input.fname{background-image:url(../img/form-fname.png);}
+    input.lname{background-image:url(../img/form-lname.png);}
+    input{background-size:16px 16px;background-repeat:no-repeat;background-position:$margin/2 50%;}
     input[type="text"] {
       @include font-text;
-      width:240px;
+      width:200px;
       margin-right:$margin;
       display:inline-block;
       border:none;
       line-height:42px;
       height:42px;
-      padding:0 12px;
+      padding:0 12px 0 36px;
     }
 
     input[type="submit"] {
       @extend .button;
       @include prefix(transition,opacity $duration);
       display:inline-block;
-      line-height:42px;
-      height:42px;
       border:none;
-      margin:$margin;
+      width:$margin*2 + 600px;
+      margin-top:$margin;
       position:relative;
     }
 
@@ -87,57 +87,29 @@
 
   }
 
-  //   &:hover {
-  //     background:lighten($darkGrey,10%);
-  //   }
-  //   > h4, > .description,> form{
-  //     padding:$margin 0 $margin $margin;
-  //     height:120px;
-  //     text-align:left;
-  //     @include prefix(transition,width $duration, padding $duration, opacity $duration);
-  //   }
-  //   > h4 {width:25%;}
-  //   > .description {width:40%;}
-  //   > form {
-  //     margin-bottom:0;
-  //     width:35%;
-  //     height:auto;
-  //     input[type="text"] {width:60%;}
-  //   }
-  //   > .close {
-  //     position:absolute;
-  //     top:0;
-  //     right:0;
-  //   }
+  @include respond-to(tablet) {
+  
+    .col-1,.col-2 { display:block; width:80%; margin:0 auto;}
 
-  //   &.active {
-  //     > h4,> .description {
-  //       opacity:0;
-  //       width:0;
-  //       padding-right:0;
-  //       padding-left:0;
-  //     }
-  //     >form {
-  //         text-align:right;
-  //         width:100%;
-  //         max-width:9999px;
-  //         font-size:0;
-  //       input[type="text"] {
-  //         width:30%;
-  //         margin-right:3%;
-  //       }
+    form {
+      width:100%;
 
-  //       input[type="submit"] {
-  //         width:100px;
-  //       }
-  //     }
-  //     h5 {
-        
-  //     }
-  //     .hide{
-  //       display:inline-block;
-  //     }
-  //   }
+      input[type="text"] {
+        width:80%;
+        display:block;
+        margin:0 auto;
+        border-bottom:1px solid rgba($textDark-light,.2);
+      }
 
-  // }
+      input[type="submit"] {
+        display:block;
+        width:80%;
+        margin:0 auto;
+      }
+    }
+  }
+
+  &:hover {
+    background:lighten($darkGrey,10%);
+  }
 }

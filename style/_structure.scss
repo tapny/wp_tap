@@ -32,6 +32,7 @@ section.events,section.articles {
     width:300px;
     background:#dddddd;
     padding:$margin;
+    height:100%;
 
     @include respond-to(tablet) {
       position:relative;

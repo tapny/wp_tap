@@ -24,7 +24,7 @@ get_header();
 
 <?php
 $args = array(
-	'role' => 'Author'
+	'role' => 'Contributor'
 );
 
 // The Query
