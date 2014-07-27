@@ -7,7 +7,11 @@ $has_image_id = get_post_thumbnail_id();
 ?>
 
       <article class="event">
-        <a class="article-date" href="<?php echo esc_url( get_permalink() ); ?>">
+        <a class="article-date" href="<?php echo esc_url( get_permalink() ); ?>" <?php 
+            if($has_image_id){
+              echo 'style="background-size:cover; background-image:url('.wp_get_attachment_image_src($has_image_id,'small')[0].');background-size:cover;"';
+            }
+            ?> >
           <div class="article-date-inner">
             <span class="month"><?php echo(date("M",$custom_fields['tf_events_startdate'][0])); ?></span>
             <span class="date"><?php echo(date("j",$custom_fields['tf_events_startdate'][0])); ?></span>

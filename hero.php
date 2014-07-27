@@ -1,14 +1,26 @@
 <?php 
-      $args = array( 
-        'tag' => 'slideshow',
-        'post_type' => array( 'post', 'tf_events' ),
+      $args = array(
+              'post_type' => array( 'post', 'tf_events' ),
+              'orderby' => 'meta_value_num',
+              'order' => 'ASC',
+              'meta_key' => 'featured_rank',
+              'meta_query' => array(
+                    array(
+                      'key' => 'featured_slide',
+                      'value' => true
+                    ),
+                    array(
+                      'key' => 'featured_rank',
+                      'compare' => 'EXISTS'
+                    )
+              )
       );
       $loop = new WP_Query( $args );
       if ( $loop->have_posts() ) : 
       ?>
       <section class="hero tall">
       <?php if($loop->found_posts>1): ?>
-        <div class="progress"></div>
+        <div class="progress"><div class="inner"></div></div>
         <div class="hero-slide">
           <a class="prev" href="#">Next</a>
           <a class="next" href="#">Prev</a>

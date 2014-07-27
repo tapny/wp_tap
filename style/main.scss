@@ -62,6 +62,7 @@ strong {
   padding:18px $margin;
   background:$green-dark;
   color:#ffffff;
+  text-shadow:none;
   @include respond-to(tablet) {padding:16px $margin/1.5;}
   @include respond-to(phone) {padding:14px $margin/2;}
   &:hover {
@@ -156,20 +157,20 @@ strong {
     width:50%;
     float:left;
     overflow:hidden;
-  }
-  a {
-    display:block;
-    @include font-label-small;
-    height:40px;
-    // margin:10px;
-    width:100%;
-    line-height:40px;
-    text-align:center;
-    background:rgba(#000000,.05);
-    &:hover {
-      background:rgba(#000000,.08);
+    a {
+      display:block;
+      @include font-label-small;
+      height:40px;
+      // margin:10px;
+      width:100%;
+      line-height:40px;
+      text-align:center;
+      background:rgba(#000000,.05);
+      &:hover {
+        background:rgba(#000000,.08);
+      }
     }
-    &.active {
+    &.active a {
       background:transparent;
       pointer-events:none;
     }
@@ -206,5 +207,6 @@ section.about {
 @import "hero";
 @import "newsletter";
 @import "article";
+@import "typography";
 @import "event";
 @import "footer";

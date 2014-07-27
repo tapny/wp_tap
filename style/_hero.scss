@@ -221,6 +221,13 @@
     top:100%;
     z-index:4;
     background:$green;
+    .inner {
+      position:absolute;
+      left:0;
+      width:0;
+      height:100%;
+      background:$green-light;
+    }
   }
 
   ul {
@@ -283,12 +290,12 @@
   h3 {
     @include font-head-large;
     color:#ffffff;
-    text-shadow:0 3px 18px rgba(0,0,0,.5);
+    text-shadow:0 3px 18px rgba(0,0,0,.8);
   }
   h4 {
     @include font-head;
     color:#ffffff;
-    text-shadow:0 3px 18px rgba(0,0,0,.5);
+    text-shadow:0 3px 18px rgba(0,0,0,.8);
   }
 
   @include respond-to(phone) {height:240px; ul,ul li {height:240px;}}

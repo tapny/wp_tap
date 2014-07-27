@@ -37,6 +37,7 @@ $j(document).ready(function() {
   scrollFun();
   $j(window).bind("scroll resize",function() {
     scrollFun();
+  $progressBar.css({top:$slideshow.height()-5+"px"});
   });
 
 
@@ -83,7 +84,7 @@ $j(".box").click(function() {
 
 $j(".newsletter-form").find("input").focus(function() {
   console.log("test");
-  $j(this).parent().parent().addClass("active");
+  $j(".newsletter").addClass("active");
 });
 
 updateScroll = function() {
@@ -103,13 +104,15 @@ if($slideshowItems.length > 1) {
   var timer;
   var duration = 7500;
   var $progressBar = $j(".progress");
+  var $progressInner = $progressBar.find(".inner");
+  $progressBar.css({top:$slideshow.height()-5+"px"});
 
   var makeActive = function(i) {
     
-    $progressBar.stop().css(
-      {width:"0px",top:$slideshow.height()-5+"px"}
+    $progressInner.stop().css(
+      {width:"0px"}
     ).animate(
-      {width:$slideshow.width()},duration
+      {width:$slideshow.width()},duration,"linear"
     );
     $slideshowItems.removeClass("active next prev");
     $slideshowItems.eq(i%$slideshowItems.length).addClass("active");
@@ -143,4 +146,33 @@ if($slideshowItems.length > 1) {
   makeActive(currentSlide);
 }
 
+
+// Sidebar Tabs
+var $sidebar = $j(".section-sidebar");
+var $sidebarTabs = $sidebar.find(".sidebar-tabs li");
+var $sidebarLists = $sidebar.find("ol.sidebar-list");
+$sidebarTabs.find("a").click(function() {
+  var $t = $j(this).parent("li");
+  var i = $sidebarTabs.index($t);
+  $sidebarTabs.removeClass("active");
+  $sidebarLists.removeClass("active");
+  $t.addClass("active");
+  $sidebarLists.eq(i).addClass("active");
+  console.log(i);
+  return false;
 });
+
+//scroll down to event brite
+$j(".eventbrite-button").click(function() {
+    $j('html, body').animate({
+        scrollTop: $j(".eventbrite").offset().top
+    }, 500);
+    return false;
+});
+
+});
+
+
+
+
+

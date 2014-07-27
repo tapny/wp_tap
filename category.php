@@ -7,12 +7,12 @@ get_header();
 
 $is_article_page = $post->ID == get_page_by_title('Articles')->ID;
 
+//List categories
 $orderby      = 'count'; 
 $show_count   = 0;      // 1 for yes, 0 for no
 $pad_counts   = 0;      // 1 for yes, 0 for no
 $hierarchical = 0;      // 1 for yes, 0 for no
 $title        = '';
-
 $args = array(
   'orderby'      => $orderby,
   'show_count'   => $show_count,
@@ -65,24 +65,53 @@ $args = array(
       <div class="right">
         <div class="section-sidebar">
           <ul class="sidebar-tabs">
-            <li><a class="active" href="#">Recommended</a></li>
-            <li><a href="#">Popular</a></li>
+            <li class="active"><a href="#">Recommended</a></li>
+            <li><a href="#">Random</a></li>
           </ul>
           <ol class="sidebar-list recommended toggle active">
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
+          <?php 
+            $recommended_query = new WP_Query(array(
+              'post_type' => 'post',
+              'limit' => '10',
+              'orderby' => 'meta_value_num',
+              'order' => 'ASC',
+              'meta_key' => 'featured_rank',
+              'meta_query' => array(
+                    array(
+                      'key' => 'featured_rec',
+                      'value' => true
+                    ),
+                    array(
+                      'key' => 'featured_rank',
+                      'compare' => 'EXISTS'
+                    )
+              )
+            ));
+            if ( $recommended_query->have_posts() ) :
+              while ( $recommended_query->have_posts() ) : $recommended_query->the_post();
+                ?>
+                  <li><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></li>
+                <?php
+              endwhile;
+            endif;  
+          ?>
           </ol>
-          <ol class="sidebar-list popular toggle">
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
-            <li><a href="#">Article name here</a></li>
+          <ol class="sidebar-list random toggle">
+          <?php 
+            $recommended_query = new WP_Query(array(
+              'post_type' => 'post',
+              'cat' => get_query_var('cat'),
+              'orderby' => 'rand',
+              'limit' => '10'
+            ));
+            if ( $recommended_query->have_posts() ) :
+              while ( $recommended_query->have_posts() ) : $recommended_query->the_post();
+                ?>
+                  <li><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></li>
+                <?php
+              endwhile;
+            endif;  
+          ?>
           </ol>
         </div>
       </div>

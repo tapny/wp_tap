@@ -180,7 +180,7 @@ strong {
   font-size: 12px;
   margin-bottom: 0px; }
 
-.button, section.events .more, section.articles .more, .newsletter > form input[type="submit"], .social a > form input[type="submit"] {
+.button, section.events .more, section.articles .more, .newsletter form input[type="submit"], .social a form input[type="submit"] {
   font-family: "Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
   color: #999999;
   text-transform: uppercase;
@@ -190,14 +190,15 @@ strong {
   display: inline-block;
   padding: 18px 24px;
   background: #00b29e;
-  color: #ffffff; }
+  color: #ffffff;
+  text-shadow: none; }
   @media only screen and (max-width: 798px) {
-    .button, section.events .more, section.articles .more, .newsletter > form input[type="submit"], .social a > form input[type="submit"] {
+    .button, section.events .more, section.articles .more, .newsletter form input[type="submit"], .social a form input[type="submit"] {
       padding: 16px 16px; } }
   @media only screen and (max-width: 480px) {
-    .button, section.events .more, section.articles .more, .newsletter > form input[type="submit"], .social a > form input[type="submit"] {
+    .button, section.events .more, section.articles .more, .newsletter form input[type="submit"], .social a form input[type="submit"] {
       padding: 14px 12px; } }
-  .button:hover, section.events .more:hover, section.articles .more:hover, .newsletter > form input[type="submit"]:hover, .social a > form input[type="submit"]:hover {
+  .button:hover, section.events .more:hover, section.articles .more:hover, .newsletter form input[type="submit"]:hover, .social a form input[type="submit"]:hover {
     background: #00c4b5; }
 
 .inner {
@@ -268,26 +269,26 @@ strong {
     width: 50%;
     float: left;
     overflow: hidden; }
-  .sidebar-tabs a {
-    display: block;
-    font-family: "Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    font-weight: 700;
-    font-size: 12px;
-    font-size: 9px;
-    height: 40px;
-    width: 100%;
-    line-height: 40px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.05); }
-    @media only screen and (max-width: 480px) {
-      .sidebar-tabs a {
-        font-size: 8px; } }
-    .sidebar-tabs a:hover {
-      background: rgba(0, 0, 0, 0.08); }
-    .sidebar-tabs a.active {
+    .sidebar-tabs li a {
+      display: block;
+      font-family: "Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      color: #999999;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 700;
+      font-size: 12px;
+      font-size: 9px;
+      height: 40px;
+      width: 100%;
+      line-height: 40px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.05); }
+      @media only screen and (max-width: 480px) {
+        .sidebar-tabs li a {
+          font-size: 8px; } }
+      .sidebar-tabs li a:hover {
+        background: rgba(0, 0, 0, 0.08); }
+    .sidebar-tabs li.active a {
       background: transparent;
       pointer-events: none; }
 
@@ -312,10 +313,10 @@ section.about {
     color: rgba(255, 255, 255, 0.8);
     margin: 0 auto 48px auto;
     width: 80%; }
-  section.about .button, section.about section.events .more, section.events section.about .more, section.about section.articles .more, section.articles section.about .more, section.about .newsletter > form input[type="submit"], .newsletter > form section.about input[type="submit"], section.about .social a > form input[type="submit"], .social a > form section.about input[type="submit"] {
+  section.about .button, section.about section.events .more, section.events section.about .more, section.about section.articles .more, section.articles section.about .more, section.about .newsletter form input[type="submit"], .newsletter form section.about input[type="submit"], section.about .social a form input[type="submit"], .social a form section.about input[type="submit"] {
     background: #ffffff;
     color: #73e1de; }
-    section.about .button:hover, section.about section.events .more:hover, section.events section.about .more:hover, section.about section.articles .more:hover, section.articles section.about .more:hover, section.about .newsletter > form input[type="submit"]:hover, .newsletter > form section.about input[type="submit"]:hover, section.about .social a > form input[type="submit"]:hover, .social a > form section.about input[type="submit"]:hover {
+    section.about .button:hover, section.about section.events .more:hover, section.events section.about .more:hover, section.about section.articles .more:hover, section.articles section.about .more:hover, section.about .newsletter form input[type="submit"]:hover, .newsletter form section.about input[type="submit"]:hover, section.about .social a form input[type="submit"]:hover, .social a form section.about input[type="submit"]:hover {
       background: #60dad7;
       color: #ffffff; }
 
@@ -1497,6 +1498,12 @@ section.events, section.articles {
     top: 100%;
     z-index: 4;
     background: #009c83; }
+    .hero .progress .inner, .image-parallax .progress .inner {
+      position: absolute;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: #00c4b5; }
   .hero ul, .image-parallax ul {
     z-index: 0;
     display: block;
@@ -1563,7 +1570,7 @@ section.events, section.articles {
     font-family: "Lato","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 64px;
     color: #ffffff;
-    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5); }
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.8); }
     @media only screen and (max-width: 798px) {
       .hero h3, .image-parallax h3 {
         font-size: 28px; } }
@@ -1582,7 +1589,7 @@ section.events, section.articles {
     font-size: 32px;
     font-family: "Lato","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #ffffff;
-    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5); }
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.8); }
     @media only screen and (max-width: 798px) {
       .hero h4, .image-parallax h4 {
         font-size: 28px; } }
@@ -1621,15 +1628,19 @@ section.events, section.articles {
   font-size: 0;
   transition: background .2s;
   text-align: center; }
-  .newsletter > h4, .social a > h4, .newsletter > .description, .social a > .description, .newsletter > form, .social a > form {
+  .newsletter .col-1, .social a .col-1, .newsletter .col-2, .social a .col-2, .newsletter .col-3, .social a .col-3 {
+    text-align: left;
     padding: 12px;
     display: inline-block;
-    overflow: hidden;
-    vertical-align: middle;
-    text-align: center;
+    vertical-align: middle; }
+  .newsletter .col-1, .social a .col-1 {
+    width: 20%; }
+  .newsletter .col-2, .social a .col-2 {
+    width: 30%; }
+  .newsletter .col-3, .social a .col-3 {
     width: 100%;
-    max-width: 520px; }
-  .newsletter > h4, .social a > h4 {
+    text-align: center; }
+  .newsletter h4, .social a h4 {
     color: #333333;
     font-weight: 300;
     font-size: 32px;
@@ -1637,18 +1648,18 @@ section.events, section.articles {
     font-size: 24px;
     color: #ffffff; }
     @media only screen and (max-width: 798px) {
-      .newsletter > h4, .social a > h4 {
+      .newsletter h4, .social a h4 {
         font-size: 28px; } }
     @media only screen and (max-width: 480px) {
-      .newsletter > h4, .social a > h4 {
+      .newsletter h4, .social a h4 {
         font-size: 24px; } }
     @media only screen and (max-width: 798px) {
-      .newsletter > h4, .social a > h4 {
+      .newsletter h4, .social a h4 {
         font-size: 20px; } }
     @media only screen and (max-width: 480px) {
-      .newsletter > h4, .social a > h4 {
+      .newsletter h4, .social a h4 {
         font-size: 18px; } }
-    .newsletter > h4 .label, .social a > h4 .label {
+    .newsletter h4 .label, .social a h4 .label {
       display: block;
       color: #666666;
       font-family: "Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -1659,9 +1670,9 @@ section.events, section.articles {
       font-size: 12px;
       font-size: 9px; }
       @media only screen and (max-width: 480px) {
-        .newsletter > h4 .label, .social a > h4 .label {
+        .newsletter h4 .label, .social a h4 .label {
           font-size: 8px; } }
-  .newsletter > .description, .social a > .description {
+  .newsletter .description, .social a .description {
     color: #333333;
     font-weight: 300;
     font-size: 16px;
@@ -1677,26 +1688,26 @@ section.events, section.articles {
     color: #999999;
     letter-spacing: .06em; }
     @media only screen and (max-width: 798px) {
-      .newsletter > .description, .social a > .description {
+      .newsletter .description, .social a .description {
         font-size: 15px; } }
     @media only screen and (max-width: 480px) {
-      .newsletter > .description, .social a > .description {
+      .newsletter .description, .social a .description {
         font-size: 14px; } }
     @media only screen and (max-width: 798px) {
-      .newsletter > .description, .social a > .description {
+      .newsletter .description, .social a .description {
         font-size: 12px; } }
     @media only screen and (max-width: 480px) {
-      .newsletter > .description, .social a > .description {
+      .newsletter .description, .social a .description {
         font-size: 11px; } }
-  .newsletter > form, .social a > form {
+  .newsletter form, .social a form {
     width: 100%;
     margin-bottom: 12px; }
-    .newsletter > form input, .social a > form input {
+    .newsletter form input, .social a form input {
       vertical-align: middle; }
-      .newsletter > form input:focus, .social a > form input:focus {
+      .newsletter form input:focus, .social a form input:focus {
         outline: none;
         border: 3px solid #00c4b5; }
-    .newsletter > form input[type="text"], .social a > form input[type="text"] {
+    .newsletter form input[type="text"], .social a form input[type="text"] {
       color: #333333;
       font-weight: 300;
       font-size: 16px;
@@ -1707,34 +1718,32 @@ section.events, section.articles {
       -o-font-smoothing: antialiased;
       font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      width: 75%;
+      width: 240px;
+      margin-right: 24px;
       display: inline-block;
       border: none;
       line-height: 42px;
       height: 42px;
       padding: 0 12px; }
       @media only screen and (max-width: 798px) {
-        .newsletter > form input[type="text"], .social a > form input[type="text"] {
+        .newsletter form input[type="text"], .social a form input[type="text"] {
           font-size: 15px; } }
       @media only screen and (max-width: 480px) {
-        .newsletter > form input[type="text"], .social a > form input[type="text"] {
+        .newsletter form input[type="text"], .social a form input[type="text"] {
           font-size: 14px; } }
-    .newsletter > form input[type="submit"], .social a > form input[type="submit"] {
+    .newsletter form input[type="submit"], .social a form input[type="submit"] {
       -webkit-transition: opacity 300ms;
       -moz-transition: opacity 300ms;
       -ms-transition: opacity 300ms;
       -o-transition: opacity 300ms;
       transition: opacity 300ms;
-      padding: 0;
       display: inline-block;
-      width: 42px;
+      line-height: 42px;
       height: 42px;
       border: none;
-      margin-right: 24px;
+      margin: 24px;
       position: relative; }
-    .newsletter > form input.hide, .social a > form input.hide, .newsletter > form .hide, .social a > form .hide {
-      display: none; }
-    .newsletter > form h5, .social a > form h5 {
+    .newsletter form h5, .social a form h5 {
       color: #333333;
       font-weight: 300;
       font-size: 16px;
@@ -1749,12 +1758,12 @@ section.events, section.articles {
       width: 40%;
       text-align: left; }
       @media only screen and (max-width: 798px) {
-        .newsletter > form h5, .social a > form h5 {
+        .newsletter form h5, .social a form h5 {
           font-size: 15px; } }
       @media only screen and (max-width: 480px) {
-        .newsletter > form h5, .social a > form h5 {
+        .newsletter form h5, .social a form h5 {
           font-size: 14px; } }
-    .newsletter > form .checkboxes, .social a > form .checkboxes {
+    .newsletter form .checkboxes, .social a form .checkboxes {
       font-family: "Gotham","Montserrat","Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic","Century Gothic", CenturyGothic, AppleGothic,"Helvetica Neue",Helvetica,Arial,sans-serif;
       color: #999999;
       text-transform: uppercase;
@@ -1766,51 +1775,8 @@ section.events, section.articles {
       width: 60%;
       text-align: left; }
       @media only screen and (max-width: 480px) {
-        .newsletter > form .checkboxes, .social a > form .checkboxes {
+        .newsletter form .checkboxes, .social a form .checkboxes {
           font-size: 8px; } }
-  @media only screen and (min-width: 799px) {
-    .newsletter:hover, .social a:hover {
-      background: #1a1a1a; }
-    .newsletter > h4, .social a > h4, .newsletter > .description, .social a > .description, .newsletter > form, .social a > form {
-      padding: 24px 0 24px 24px;
-      height: 120px;
-      text-align: left;
-      -webkit-transition: width 300ms, padding 300ms, opacity 300ms;
-      -moz-transition: width 300ms, padding 300ms, opacity 300ms;
-      -ms-transition: width 300ms, padding 300ms, opacity 300ms;
-      -o-transition: width 300ms, padding 300ms, opacity 300ms;
-      transition: width 300ms, padding 300ms, opacity 300ms; }
-    .newsletter > h4, .social a > h4 {
-      width: 25%; }
-    .newsletter > .description, .social a > .description {
-      width: 40%; }
-    .newsletter > form, .social a > form {
-      margin-bottom: 0;
-      width: 35%;
-      height: auto; }
-      .newsletter > form input[type="text"], .social a > form input[type="text"] {
-        width: 60%; }
-    .newsletter > .close, .social a > .close {
-      position: absolute;
-      top: 0;
-      right: 0; }
-    .newsletter.active > h4, .social a.active > h4, .newsletter.active > .description, .social a.active > .description {
-      opacity: 0;
-      width: 0;
-      padding-right: 0;
-      padding-left: 0; }
-    .newsletter.active > form, .social a.active > form {
-      text-align: right;
-      width: 100%;
-      max-width: 9999px;
-      font-size: 0; }
-      .newsletter.active > form input[type="text"], .social a.active > form input[type="text"] {
-        width: 30%;
-        margin-right: 3%; }
-      .newsletter.active > form input[type="submit"], .social a.active > form input[type="submit"] {
-        width: 100px; }
-    .newsletter.active .hide, .social a.active .hide {
-      display: inline-block; } }
 
 .article-intro, .boxes .box .box-hidden, .article-body, .event-body {
   padding: 72px 96px;
@@ -1928,6 +1894,440 @@ section.events, section.articles {
     font-weight: 700;
     margin-bottom: 0; }
 
+.article-body, .event-body {
+  line-height: 1.6em; }
+  .article-body h1, .event-body h1,
+  .article-body h2,
+  .event-body h2,
+  .article-body h3,
+  .event-body h3,
+  .article-body h4,
+  .event-body h4,
+  .article-body h5,
+  .event-body h5,
+  .article-body h6,
+  .event-body h6,
+  .article-body .h1,
+  .event-body .h1,
+  .article-body .h2,
+  .event-body .h2,
+  .article-body .h3,
+  .event-body .h3,
+  .article-body .h4,
+  .event-body .h4,
+  .article-body .h5,
+  .event-body .h5,
+  .article-body .h6,
+  .event-body .h6 {
+    text-align: left;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit; }
+  .article-body h1 small, .event-body h1 small,
+  .article-body h2 small,
+  .event-body h2 small,
+  .article-body h3 small,
+  .event-body h3 small,
+  .article-body h4 small,
+  .event-body h4 small,
+  .article-body h5 small,
+  .event-body h5 small,
+  .article-body h6 small,
+  .event-body h6 small,
+  .article-body .h1 small,
+  .event-body .h1 small,
+  .article-body .h2 small,
+  .event-body .h2 small,
+  .article-body .h3 small,
+  .event-body .h3 small,
+  .article-body .h4 small,
+  .event-body .h4 small,
+  .article-body .h5 small,
+  .event-body .h5 small,
+  .article-body .h6 small,
+  .event-body .h6 small,
+  .article-body h1 .small,
+  .event-body h1 .small,
+  .article-body h2 .small,
+  .event-body h2 .small,
+  .article-body h3 .small,
+  .event-body h3 .small,
+  .article-body h4 .small,
+  .event-body h4 .small,
+  .article-body h5 .small,
+  .event-body h5 .small,
+  .article-body h6 .small,
+  .event-body h6 .small,
+  .article-body .h1 .small,
+  .event-body .h1 .small,
+  .article-body .h2 .small,
+  .event-body .h2 .small,
+  .article-body .h3 .small,
+  .event-body .h3 .small,
+  .article-body .h4 .small,
+  .event-body .h4 .small,
+  .article-body .h5 .small,
+  .event-body .h5 .small,
+  .article-body .h6 .small,
+  .event-body .h6 .small {
+    font-weight: normal;
+    line-height: 1;
+    color: #777; }
+  .article-body h1, .event-body h1,
+  .article-body .h1,
+  .event-body .h1,
+  .article-body h2,
+  .event-body h2,
+  .article-body .h2,
+  .event-body .h2,
+  .article-body h3,
+  .event-body h3,
+  .article-body .h3,
+  .event-body .h3 {
+    margin-top: 20px;
+    margin-bottom: 10px; }
+  .article-body h1 small, .event-body h1 small,
+  .article-body .h1 small,
+  .event-body .h1 small,
+  .article-body h2 small,
+  .event-body h2 small,
+  .article-body .h2 small,
+  .event-body .h2 small,
+  .article-body h3 small,
+  .event-body h3 small,
+  .article-body .h3 small,
+  .event-body .h3 small,
+  .article-body h1 .small,
+  .event-body h1 .small,
+  .article-body .h1 .small,
+  .event-body .h1 .small,
+  .article-body h2 .small,
+  .event-body h2 .small,
+  .article-body .h2 .small,
+  .event-body .h2 .small,
+  .article-body h3 .small,
+  .event-body h3 .small,
+  .article-body .h3 .small,
+  .event-body .h3 .small {
+    font-size: 65%; }
+  .article-body h4, .event-body h4,
+  .article-body .h4,
+  .event-body .h4,
+  .article-body h5,
+  .event-body h5,
+  .article-body .h5,
+  .event-body .h5,
+  .article-body h6,
+  .event-body h6,
+  .article-body .h6,
+  .event-body .h6 {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .article-body h4 small, .event-body h4 small,
+  .article-body .h4 small,
+  .event-body .h4 small,
+  .article-body h5 small,
+  .event-body h5 small,
+  .article-body .h5 small,
+  .event-body .h5 small,
+  .article-body h6 small,
+  .event-body h6 small,
+  .article-body .h6 small,
+  .event-body .h6 small,
+  .article-body h4 .small,
+  .event-body h4 .small,
+  .article-body .h4 .small,
+  .event-body .h4 .small,
+  .article-body h5 .small,
+  .event-body h5 .small,
+  .article-body .h5 .small,
+  .event-body .h5 .small,
+  .article-body h6 .small,
+  .event-body h6 .small,
+  .article-body .h6 .small,
+  .event-body .h6 .small {
+    font-size: 75%; }
+  .article-body h1, .event-body h1,
+  .article-body .h1,
+  .event-body .h1 {
+    font-size: 36px; }
+  .article-body h2, .event-body h2,
+  .article-body .h2,
+  .event-body .h2 {
+    font-size: 30px; }
+  .article-body h3, .event-body h3,
+  .article-body .h3,
+  .event-body .h3 {
+    font-size: 24px; }
+  .article-body h4, .event-body h4,
+  .article-body .h4,
+  .event-body .h4 {
+    font-size: 18px; }
+  .article-body h5, .event-body h5,
+  .article-body .h5,
+  .event-body .h5 {
+    font-size: 14px; }
+  .article-body h6, .event-body h6,
+  .article-body .h6,
+  .event-body .h6 {
+    font-size: 12px; }
+  .article-body p, .event-body p {
+    margin: 0 0 10px; }
+  .article-body .lead, .event-body .lead {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4; }
+  @media (min-width: 768px) {
+    .article-body .lead, .event-body .lead {
+      font-size: 21px; } }
+  .article-body small, .event-body small,
+  .article-body .small,
+  .event-body .small {
+    font-size: 85%; }
+  .article-body cite, .event-body cite {
+    font-style: normal; }
+  .article-body mark, .event-body mark,
+  .article-body .mark,
+  .event-body .mark {
+    padding: .2em;
+    background-color: #fcf8e3; }
+  .article-body .text-left, .event-body .text-left {
+    text-align: left; }
+  .article-body .text-right, .event-body .text-right {
+    text-align: right; }
+  .article-body .text-center, .event-body .text-center {
+    text-align: center; }
+  .article-body .text-justify, .event-body .text-justify {
+    text-align: justify; }
+  .article-body .text-nowrap, .event-body .text-nowrap {
+    white-space: nowrap; }
+  .article-body .text-lowercase, .event-body .text-lowercase {
+    text-transform: lowercase; }
+  .article-body .text-uppercase, .event-body .text-uppercase {
+    text-transform: uppercase; }
+  .article-body .text-capitalize, .event-body .text-capitalize {
+    text-transform: capitalize; }
+  .article-body .text-muted, .event-body .text-muted {
+    color: #777; }
+  .article-body .text-primary, .event-body .text-primary {
+    color: #428bca; }
+  .article-body a.text-primary:hover, .event-body a.text-primary:hover {
+    color: #3071a9; }
+  .article-body .text-success, .event-body .text-success {
+    color: #3c763d; }
+  .article-body a.text-success:hover, .event-body a.text-success:hover {
+    color: #2b542c; }
+  .article-body .text-info, .event-body .text-info {
+    color: #31708f; }
+  .article-body a.text-info:hover, .event-body a.text-info:hover {
+    color: #245269; }
+  .article-body .text-warning, .event-body .text-warning {
+    color: #8a6d3b; }
+  .article-body a.text-warning:hover, .event-body a.text-warning:hover {
+    color: #66512c; }
+  .article-body .text-danger, .event-body .text-danger {
+    color: #a94442; }
+  .article-body a.text-danger:hover, .event-body a.text-danger:hover {
+    color: #843534; }
+  .article-body .bg-primary, .event-body .bg-primary {
+    color: #fff;
+    background-color: #428bca; }
+  .article-body a.bg-primary:hover, .event-body a.bg-primary:hover {
+    background-color: #3071a9; }
+  .article-body .bg-success, .event-body .bg-success {
+    background-color: #dff0d8; }
+  .article-body a.bg-success:hover, .event-body a.bg-success:hover {
+    background-color: #c1e2b3; }
+  .article-body .bg-info, .event-body .bg-info {
+    background-color: #d9edf7; }
+  .article-body a.bg-info:hover, .event-body a.bg-info:hover {
+    background-color: #afd9ee; }
+  .article-body .bg-warning, .event-body .bg-warning {
+    background-color: #fcf8e3; }
+  .article-body a.bg-warning:hover, .event-body a.bg-warning:hover {
+    background-color: #f7ecb5; }
+  .article-body .bg-danger, .event-body .bg-danger {
+    background-color: #f2dede; }
+  .article-body a.bg-danger:hover, .event-body a.bg-danger:hover {
+    background-color: #e4b9b9; }
+  .article-body .page-header, .event-body .page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee; }
+  .article-body ul, .event-body ul,
+  .article-body ol,
+  .event-body ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    list-style: disc outside none; }
+  .article-body li, .event-body li {
+    margin-left: 24px;
+    list-style: disc outside none; }
+  .article-body ul ul, .event-body ul ul,
+  .article-body ol ul,
+  .event-body ol ul,
+  .article-body ul ol,
+  .event-body ul ol,
+  .article-body ol ol,
+  .event-body ol ol {
+    margin-bottom: 0;
+    list-style: disc outside none; }
+  .article-body .list-unstyled, .event-body .list-unstyled {
+    padding-left: 0;
+    list-style: none; }
+  .article-body .list-inline, .event-body .list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none; }
+  .article-body .list-inline > li, .event-body .list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px; }
+  .article-body dl, .event-body dl {
+    margin-top: 0;
+    margin-bottom: 20px; }
+  .article-body dt, .event-body dt,
+  .article-body dd,
+  .event-body dd {
+    line-height: 1.42857143; }
+  .article-body dt, .event-body dt {
+    font-weight: bold; }
+  .article-body dd, .event-body dd {
+    margin-left: 0; }
+  @media (min-width: 768px) {
+    .article-body .dl-horizontal dt, .event-body .dl-horizontal dt {
+      float: left;
+      width: 160px;
+      overflow: hidden;
+      clear: left;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    .article-body .dl-horizontal dd, .event-body .dl-horizontal dd {
+      margin-left: 180px; } }
+  .article-body abbr[title], .event-body abbr[title],
+  .article-body abbr[data-original-title],
+  .event-body abbr[data-original-title] {
+    cursor: help;
+    border-bottom: 1px dotted #777; }
+  .article-body .initialism, .event-body .initialism {
+    font-size: 90%;
+    text-transform: uppercase; }
+  .article-body blockquote, .event-body blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #eee; }
+  .article-body blockquote p:last-child, .event-body blockquote p:last-child,
+  .article-body blockquote ul:last-child,
+  .event-body blockquote ul:last-child,
+  .article-body blockquote ol:last-child,
+  .event-body blockquote ol:last-child {
+    margin-bottom: 0; }
+  .article-body blockquote footer, .event-body blockquote footer,
+  .article-body blockquote small,
+  .event-body blockquote small,
+  .article-body blockquote .small,
+  .event-body blockquote .small {
+    display: block;
+    font-size: 80%;
+    line-height: 1.42857143;
+    color: #777; }
+  .article-body blockquote footer:before, .event-body blockquote footer:before,
+  .article-body blockquote small:before,
+  .event-body blockquote small:before,
+  .article-body blockquote .small:before,
+  .event-body blockquote .small:before {
+    content: '\2014 \00A0'; }
+  .article-body .blockquote-reverse, .event-body .blockquote-reverse,
+  .article-body blockquote.pull-right,
+  .event-body blockquote.pull-right {
+    padding-right: 15px;
+    padding-left: 0;
+    text-align: right;
+    border-right: 5px solid #eee;
+    border-left: 0; }
+  .article-body .blockquote-reverse footer:before, .event-body .blockquote-reverse footer:before,
+  .article-body blockquote.pull-right footer:before,
+  .event-body blockquote.pull-right footer:before,
+  .article-body .blockquote-reverse small:before,
+  .event-body .blockquote-reverse small:before,
+  .article-body blockquote.pull-right small:before,
+  .event-body blockquote.pull-right small:before,
+  .article-body .blockquote-reverse .small:before,
+  .event-body .blockquote-reverse .small:before,
+  .article-body blockquote.pull-right .small:before,
+  .event-body blockquote.pull-right .small:before {
+    content: ''; }
+  .article-body .blockquote-reverse footer:after, .event-body .blockquote-reverse footer:after,
+  .article-body blockquote.pull-right footer:after,
+  .event-body blockquote.pull-right footer:after,
+  .article-body .blockquote-reverse small:after,
+  .event-body .blockquote-reverse small:after,
+  .article-body blockquote.pull-right small:after,
+  .event-body blockquote.pull-right small:after,
+  .article-body .blockquote-reverse .small:after,
+  .event-body .blockquote-reverse .small:after,
+  .article-body blockquote.pull-right .small:after,
+  .event-body blockquote.pull-right .small:after {
+    content: '\00A0 \2014'; }
+  .article-body blockquote:before, .event-body blockquote:before,
+  .article-body blockquote:after,
+  .event-body blockquote:after {
+    content: ""; }
+  .article-body address, .event-body address {
+    margin-bottom: 20px;
+    font-style: normal;
+    line-height: 1.42857143; }
+  .article-body code, .event-body code,
+  .article-body kbd,
+  .event-body kbd,
+  .article-body pre,
+  .event-body pre,
+  .article-body samp,
+  .event-body samp {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+  .article-body code, .event-body code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px; }
+  .article-body kbd, .event-body kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25); }
+  .article-body kbd kbd, .event-body kbd kbd {
+    padding: 0;
+    font-size: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .article-body pre, .event-body pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px; }
+  .article-body pre code, .event-body pre code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0; }
+
 .events-page .article-date {
   margin-right: 24px; }
 .events-page .article-text {
@@ -1967,7 +2367,8 @@ section.events, section.articles {
       width: 75px; } }
 .events .article-date-inner {
   width: 60%;
-  height: 60%; }
+  height: 60%;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15); }
   @media only screen and (max-width: 798px) {
     .events .article-date-inner {
       height: 45%; } }
@@ -2134,7 +2535,8 @@ section.events, section.articles {
   transform: translate3d(-50%, -50%, 0);
   text-align: center;
   background: #ffffff;
-  border-top: 10px solid #60dad7; }
+  border-top: 10px solid #60dad7;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15); }
   @media only screen and (max-width: 798px) {
     .article-date-inner {
       border-top-width: 5px; } }

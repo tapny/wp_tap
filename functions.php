@@ -196,11 +196,9 @@ function tf_events_edit_columns($columns) {
         "tf_col_ev_cat" => "Category",
         "tf_col_ev_date" => "Dates",
         "tf_col_ev_times" => "Times",
-        "tf_col_ev_thumb" => "Thumbnail",
         "title" => "Event",
         "tf_col_ev_desc" => "Description",
         );
-
     return $columns;
 
 }
@@ -240,19 +238,6 @@ function tf_events_custom_columns($column) {
                 $starttime = date($time_format, $startt);
                 $endtime = date($time_format, $endt);
                 echo $starttime . ' - ' .$endtime;
-            break;
-            case "tf_col_ev_thumb":
-                // - show thumb -
-                $post_image_id = get_post_thumbnail_id(get_the_ID());
-                if ($post_image_id) {
-                    $thumbnail = wp_get_attachment_image_src( $post_image_id, 'post-thumbnail', false);
-                    if ($thumbnail) (string)$thumbnail = $thumbnail[0];
-                    echo '<img src="';
-                    echo bloginfo('template_url');
-                    echo '/timthumb/timthumb.php?src=';
-                    echo $thumbnail;
-                    echo '&h=60&w=60&zc=1" alt="" />';
-                }
             break;
             case "tf_col_ev_desc";
                 the_excerpt();
@@ -476,4 +461,102 @@ class T5_Nav_Menu_Walker_Simple extends Walker_Nav_Menu
     function end_el( &$output, $item, $depth = 0, $args = array() ) {
         $output .= "</li>\n";
     }
+}
+
+
+// Custom Meta Box for slideshow
+// from http://wordpress.stackexchange.com/questions/61041/add-a-checkbox-to-post-screen-that-adds-a-class-to-the-title
+
+/* Define the custom box */
+add_action( 'add_meta_boxes', 'wpse_61041_add_custom_box' );
+
+/* Do something with the data entered */
+add_action( 'save_post', 'wpse_61041_save_postdata' );
+
+/* Adds a box to the main column on the Post and Page edit screens */
+function wpse_61041_add_custom_box() {
+    $post_types = get_post_types();
+    foreach ( $post_types as $post_type )
+        add_meta_box( 
+            'wpse_61041_sectionid',
+            'Feature this post',
+            'wpse_61041_inner_custom_box',
+            $post_type,
+            'side'
+        );
+}
+
+/* Prints the box content */
+function wpse_61041_inner_custom_box($post)
+{
+    // Use nonce for verification
+    wp_nonce_field( 'wpse_61041_wpse_61041_field_nonce', 'wpse_61041_noncename' );
+
+    $saved_slide = get_post_meta( $post->ID, 'featured_slide', true);
+    if( !$saved_slide )
+        $saved_slide = false;
+
+    $saved_rec = get_post_meta( $post->ID, 'featured_rec', true);
+    if( !$saved_rec )
+        $saved_rec = false;
+
+    $saved_rank = get_post_meta( $post->ID, 'featured_rank', true);
+    if( !$saved_rank )
+        $saved_rank = '99';
+    $fields_rank = array(
+        9 => __('-- Select Rank --', 'wpse'),
+        0 => __('1 (highest)', 'wpse'),
+        1 => __('2', 'wpse'),
+        2 => __('3', 'wpse'),
+        3 => __('4', 'wpse'),
+        4 => __('5', 'wpse'),
+        5 => __('6', 'wpse'),
+        6 => __('7', 'wpse'),
+        7 => __('8', 'wpse'),
+        8 => __('9 (lowest)', 'wpse')
+    );
+
+    ?>
+        <ul>
+            <li>
+                <label class="selectit"><input value="1" type="checkbox" name="featured_slide" <?php echo checked($saved_slide, true, false) ?>> Show in slideshow</label>
+            </li>
+            <li>
+                <label class="selectit"><input value="1" type="checkbox" name="featured_rec" <?php echo checked($saved_rec, true, false) ?>> Recommend this post</label>
+            </li>
+            <li>
+                <select name="featured_rank">
+                    <?php foreach ($fields_rank as $key => $value) { ?>
+                        <option value="<?php echo esc_attr($key); ?>" <?php echo selected($saved_rank, $key, false) ?>><?php echo esc_html($value); ?></option>
+                    <?php }; ?>
+                </select>
+            </li>
+         </ul>   
+    <?php
+
+
+}
+
+/* When the post is saved, saves our custom data */
+function wpse_61041_save_postdata( $post_id ) 
+{
+      // verify if this is an auto save routine. 
+      // If it is our form has not been submitted, so we dont want to do anything
+      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+          return;
+
+      // verify this came from the our screen and with proper authorization,
+      // because save_post can be triggered at other times
+      if ( !wp_verify_nonce( $_POST['wpse_61041_noncename'], 'wpse_61041_wpse_61041_field_nonce' ) )
+          return;
+
+      if ( isset($_POST['featured_slide']) ){
+            update_post_meta( $post_id, 'featured_slide', $_POST['featured_slide'] );
+      } else { update_post_meta( $post_id, 'featured_slide', NULL ); }
+      if ( isset($_POST['featured_rec']) ){
+            update_post_meta( $post_id, 'featured_rec', $_POST['featured_rec'] );
+      } else { update_post_meta( $post_id, 'featured_rec', NULL ); }
+      if ( isset($_POST['featured_rank']) ){
+            update_post_meta( $post_id, 'featured_rank', $_POST['featured_rank'] );
+      } else { update_post_meta( $post_id, 'featured_rank', NULL ); }
 }

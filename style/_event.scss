@@ -27,6 +27,7 @@
   .article-date-inner {
     width:60%;
     height:60%;
+    box-shadow: 0 5px 18px rgba(0,0,0,.15);
     @include respond-to(tablet) {height:45%;}
     @include respond-to(phone) {height:30%;}
   }
@@ -152,6 +153,7 @@
     background:#ffffff;
     border-top:10px solid $teal-dark;
     @include respond-to(tablet) {border-top-width:5px;}
+    box-shadow: 0 5px 18px rgba(0,0,0,.15);
   }
   .month {
     @include font-label;

@@ -28,10 +28,10 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
                   <span class="date"><?php echo(date("j",$custom_fields['tf_events_startdate'][0])); ?></span>
                 </div>
               </span>
-              <h4><?php the_title() ?><br />
+              <h4><?php the_title() ?></h4><br />
 
 <?php if($custom_fields['tf_events_eventbrite'][0]): ?>
-              <div class="button" href="#">Buy tickets</div>
+              <div class="eventbrite-button button" style="text-shadow:none;cursor:pointer;">Buy tickets</div>
 <?php endif; ?>
             </div>
           </a>
