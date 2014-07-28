@@ -94,6 +94,12 @@ function get_background_image_style($thumbnail_id) {
     endif;
 }
 
+function event_inactive($date) {
+    if(date("Y-m-d", $date) < date("Y-m-d")) {
+        echo 'old-event';
+    }
+}
+
 /* ------------------- THEME FORCE ---------------------- */
 
 /*

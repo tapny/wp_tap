@@ -12,6 +12,11 @@
     height:$articleHeight/1.5;
     overflow:hidden;
     border-bottom:1px solid #cccccc;
+    &.old-event {
+      .article-date {@include gradient(#aaaaaa,#bbbbbb);}
+      .article-date-inner {border-top-color:#999999;}
+      .text-subtitle::before {content:"Past Event: ";}
+    }
   }
   .article-date {
     @include gradient($green-light,$green-dark);
@@ -20,7 +25,7 @@
     width:$colWidth/1.5;
     height:$articleHeight/1.5;
     &:hover {
-      background:$green-light;
+      background-color:$green-light;
     }
     @include respond-to(tablet) {width:$colWidth/2;}
     @include respond-to(phone) {width:$colWidth/4;}
@@ -142,6 +147,9 @@
     @include respond-to(tablet) {width:$colWidth/5;height:$articleHeight/5;margin-bottom:$margin/2;}
     @include respond-to(phone) {width:$colWidth/6;height:$articleHeight/6;margin-bottom:$margin/3;}
 
+    &.old-event {
+      .article-date-inner {border-top-color:#999999;}
+    }
   }
   .article-date-inner {
     position:absolute;

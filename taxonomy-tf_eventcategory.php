@@ -43,13 +43,23 @@ $args = array(
         $event_query = new WP_Query(
           array(
             'post_type' => 'tf_events',
-            'paged' => get_query_var('paged')
+            'posts_per_page' => '10',
+            'paged' => get_query_var('paged'),
+            'orderby' => 'meta_value_num',
+            'meta_key' => 'tf_events_startdate',
+            'meta_query' => array(
+              array(
+                'key' => 'tf_events_startdate',
+                'compare' => 'EXISTS'
+              )
+            )
           )
         );
         if ( $event_query->have_posts() ) :
           while ( $event_query->have_posts() ) : $event_query->the_post();
             get_template_part( 'content', 'events', get_post_format() );
           endwhile;
+          wpex_pagination();
         endif;  
       elseif ( have_posts() ) :
         while ( have_posts() ) : the_post();

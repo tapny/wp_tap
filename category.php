@@ -40,7 +40,11 @@ $args = array(
 
     <?
       if ($is_article_page) {
-        $article_query = new WP_Query(array('post_type' => 'post','posts_per_page' => '20','paged' => get_query_var('paged')));
+        $article_query = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => '10',
+          'paged' => get_query_var('paged')
+        ));
         if ( $article_query->have_posts() ) {
           while ( $article_query->have_posts() ) : $article_query->the_post();
             get_template_part( 'content', 'posts', get_post_format() );

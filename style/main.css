@@ -2375,6 +2375,27 @@ section.events, section.articles {
   height: 200px;
   overflow: hidden;
   border-bottom: 1px solid #cccccc; }
+  .events article.event.old-event .article-date {
+    background: #aaaaaa;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #aaaaaa 0%, #bbbbbb 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #aaaaaa), color-stop(100%, #bbbbbb));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #aaaaaa 0%, #bbbbbb 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #aaaaaa 0%, #bbbbbb 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #aaaaaa 0%, #bbbbbb 100%);
+    /* IE10+ */
+    background: linear-gradient(225deg, #aaaaaa 0%, #bbbbbb 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */ }
+  .events article.event.old-event .article-date-inner {
+    border-top-color: #999999; }
+  .events article.event.old-event .text-subtitle::before {
+    content: "Past Event: "; }
 .events .article-date {
   background: #00c4b5;
   /* Old browsers */
@@ -2397,7 +2418,7 @@ section.events, section.articles {
   width: 200px;
   height: 200px; }
   .events .article-date:hover {
-    background: #00c4b5; }
+    background-color: #00c4b5; }
   @media only screen and (max-width: 798px) {
     .events .article-date {
       width: 150px; } }
@@ -2560,6 +2581,8 @@ section.events, section.articles {
       width: 50px;
       height: 50px;
       margin-bottom: 8px; } }
+  .article-date.old-event .article-date-inner {
+    border-top-color: #999999; }
 
 .article-date-inner {
   position: absolute;
