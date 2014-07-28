@@ -1,4 +1,8 @@
-<?php $custom_fields = get_post_custom(); ?>
+<?php 
+
+$custom_fields = get_post_custom(); 
+
+?>
   <h1 class="breadcrumb">
     <ul>
       <li><a href="<?php echo get_page_link(get_page_by_title('Articles')->ID); ?>">Articles</a></li>
@@ -14,7 +18,7 @@
   <section class="hero">
     <div class="hero-slide">
       <ul>
-        <li style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'large')[0]; ?>);">
+        <li <?php get_background_image_style(get_post_thumbnail_id()); ?>>
           <span class="hero-outer">
             <div class="hero-inner">
               <h4><?php the_title() ?></h4>

@@ -9,7 +9,7 @@
           <article class="link">
           <?php if($has_image_id): ?>
             <div class="article-img">
-              <a class="article-img-thumb" href="<?php echo esc_url( get_permalink() ); ?>" style="background-image:url(<?php echo wp_get_attachment_image_src($has_image_id,'small')[0]; ?>);"></a>
+              <a class="article-img-thumb" href="<?php echo esc_url( get_permalink() ); ?>" <?php get_background_image_style(get_post_thumbnail_id()); ?>></a>
             </div>
            <?php endif; ?>
             <div class="article-text">

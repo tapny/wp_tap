@@ -40,7 +40,12 @@ $args = array(
     <section class="events events-page">
     	<?
       if ($is_event_page) :
-        $event_query = new WP_Query(array('post_type' => 'tf_events'));
+        $event_query = new WP_Query(
+          array(
+            'post_type' => 'tf_events',
+            'paged' => get_query_var('paged')
+          )
+        );
         if ( $event_query->have_posts() ) :
           while ( $event_query->have_posts() ) : $event_query->the_post();
             get_template_part( 'content', 'events', get_post_format() );

@@ -87,6 +87,13 @@ function excerpt($limit) {
       return $content;
     }
 
+function get_background_image_style($thumbnail_id) {
+    $image_src = wp_get_attachment_image_src($thumbnail_id, 'full');
+    if ( is_array($image_src) ):
+        echo 'style="background-image: url('.$image_src[0].');"';
+    endif;
+}
+
 /* ------------------- THEME FORCE ---------------------- */
 
 /*
@@ -559,4 +566,50 @@ function wpse_61041_save_postdata( $post_id )
       if ( isset($_POST['featured_rank']) ){
             update_post_meta( $post_id, 'featured_rank', $_POST['featured_rank'] );
       } else { update_post_meta( $post_id, 'featured_rank', NULL ); }
+}
+
+
+
+
+
+
+// Adding pagination: http://www.wpexplorer.com/pagination-wordpress-theme/
+// Numbered Pagination
+if ( !function_exists( 'wpex_pagination' ) ) {
+    
+    function wpex_pagination() {
+        
+        $prev_arrow = is_rtl() ? '&rarr;' : '&larr;';
+        $next_arrow = is_rtl() ? '&larr;' : '&rarr;';
+        
+        global $wp_query,$article_query,$event_query;
+        if($article_query) {
+            $total = $article_query->max_num_pages;
+        } else if($event_query) {
+            $total = $event_query->max_num_pages;
+        } else {
+            $total = $wp_query->max_num_pages;
+        }
+        $big = 999999999; // need an unlikely integer
+        if( $total > 1 )  {
+             if( !$current_page = get_query_var('paged') )
+                 $current_page = 1;
+             if( get_option('permalink_structure') ) {
+                 $format = 'page/%#%/';
+             } else {
+                 $format = '&paged=%#%';
+             }
+            echo paginate_links(array(
+                'base'          => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                'format'        => $format,
+                'current'       => max( 1, get_query_var('paged') ),
+                'total'         => $total,
+                'mid_size'      => 3,
+                'type'          => 'list',
+                'prev_text'     => $prev_arrow,
+                'next_text'     => $next_arrow,
+             ) );
+        }
+    }
+    
 }

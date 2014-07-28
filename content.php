@@ -11,7 +11,7 @@ $has_image_id = get_post_thumbnail_id();
   <section class="hero">
     <div class="hero-slide">
       <ul>
-        <li style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'large')[0]; ?>);">
+        <li <?php get_background_image_style($has_image_id);?> >
           <span class="hero-outer">
             <div class="hero-inner">
               <h4><?php echo $custom_fields['sub_headline'][0]; ?></h4>

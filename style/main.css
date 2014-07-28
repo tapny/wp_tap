@@ -2392,6 +2392,7 @@ section.events, section.articles {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */
+  background-size: cover;
   float: left;
   width: 200px;
   height: 200px; }

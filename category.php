@@ -18,7 +18,7 @@ $args = array(
   'show_count'   => $show_count,
   'pad_counts'   => $pad_counts,
   'hierarchical' => $hierarchical,
-  'title_li'     => $title
+  'title_li'     => $title,
 );
 
 ?>
@@ -39,27 +39,28 @@ $args = array(
         <div class="section-page">
 
     <?
-      if ($is_article_page) :
-        $article_query = new WP_Query(array('post_type' => 'post'));
-        if ( $article_query->have_posts() ) :
+      if ($is_article_page) {
+        $article_query = new WP_Query(array('post_type' => 'post','posts_per_page' => '20','paged' => get_query_var('paged')));
+        if ( $article_query->have_posts() ) {
           while ( $article_query->have_posts() ) : $article_query->the_post();
             get_template_part( 'content', 'posts', get_post_format() );
           endwhile;
-        endif;  
-      elseif ( have_posts() ) : 
+          wpex_pagination();
+        }  
+      }
+      elseif ( have_posts() ) {
         while ( have_posts() ) : the_post();
           get_template_part( 'content', 'posts', get_post_format() );
         endwhile;
         // Previous/next post navigation.
         // twentyfourteen_paging_nav();
-      else :
+      }
+      else {
         // If no content, include the "No posts found" template.
         // get_template_part( 'content', 'none' );
-      endif;
+      }
     ?>
 
-
-          <a class="more" href="#">Pagination goes here.</a>
         </div>
       </div>
       <div class="right">

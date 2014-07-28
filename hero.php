@@ -1,4 +1,5 @@
 <?php 
+
       $args = array(
               'post_type' => array( 'post', 'tf_events' ),
               'orderby' => 'meta_value_num',
@@ -29,9 +30,9 @@
       <?php endif; ?>
           <ul> 
       <?php
-        while ( $loop->have_posts() ) : $loop->the_post();      
-        ?>   
-                <li class="slideshow-<?php echo $loop->current_post; ?>" style="background-image:url(<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(),'large')[0]; ?>);">
+        while ( $loop->have_posts() ) : $loop->the_post();    
+      ?>   
+                <li class="slideshow-<?php echo $loop->current_post; ?>" <?php get_background_image_style(get_post_thumbnail_id()); ?> >
                   <a class="hero-outer" href="<?php echo get_permalink(); ?>">
                     <div class="hero-inner">
                       <h3><?php the_title() ?></h3>

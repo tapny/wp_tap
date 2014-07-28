@@ -15,6 +15,7 @@
   }
   .article-date {
     @include gradient($green-light,$green-dark);
+    background-size:cover;
     float:left;
     width:$colWidth/1.5;
     height:$articleHeight/1.5;

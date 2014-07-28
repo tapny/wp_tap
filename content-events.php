@@ -9,7 +9,7 @@ $has_image_id = get_post_thumbnail_id();
       <article class="event">
         <a class="article-date" href="<?php echo esc_url( get_permalink() ); ?>" <?php 
             if($has_image_id){
-              echo 'style="background-size:cover; background-image:url('.wp_get_attachment_image_src($has_image_id,'small')[0].');background-size:cover;"';
+              get_background_image_style($has_image_id);
             }
             ?> >
           <div class="article-date-inner">

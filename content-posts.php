@@ -7,11 +7,11 @@
 ?>
 
           <article class="link">
-            <div class="article-img" style="background-image:url(<?php 
+            <div class="article-img" <?php 
             if($has_image_id){
-              echo wp_get_attachment_image_src($has_image_id,'small')[0].')"'; 
+              get_background_image_style($has_image_id);
             } else {
-              echo get_template_directory_uri().'/img/article.png); background-size:contain;"';
+              echo 'style="background-image:url('.get_template_directory_uri().'/img/article.png); background-size:contain;"';
             }
             ?>>
               <a href="<?php echo esc_url( get_permalink() ); ?>"></a>
