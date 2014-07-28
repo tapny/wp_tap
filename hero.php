@@ -1,7 +1,7 @@
 <?php 
 
       $args = array(
-              'post_type' => array( 'post', 'tf_events' ),
+              'post_type' => array( 'post', 'tf_events', 'page' ),
               'orderby' => 'meta_value_num',
               'order' => 'ASC',
               'meta_key' => 'featured_rank',
@@ -35,7 +35,13 @@
                 <li class="slideshow-<?php echo $loop->current_post; ?>" <?php get_background_image_style(get_post_thumbnail_id()); ?> >
                   <a class="hero-outer" href="<?php echo get_permalink(); ?>">
                     <div class="hero-inner">
-                      <h3><?php the_title() ?></h3>
+                      <h3><?php 
+                      $custom_array = get_post_custom();
+                      if($custom_array && is_array($custom_array["sub_headline"]))
+                        echo $custom_array['sub_headline'][0];
+                      else
+                        the_title();
+                      ?></h3>
                       <br /><br />
                       <div class="button" href="<?php echo get_permalink(); ?>">Read more</div>
                     </div>

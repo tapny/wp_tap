@@ -20,13 +20,7 @@ $has_image_id = get_post_thumbnail_id();
           </div>
         </a>
         <div class="article-text">
-          <div class="article-img" style="background-image:url(<?php 
-            if($has_image_id){
-              echo wp_get_attachment_image_src($has_image_id,'small')[0]; 
-            } else {
-              echo get_template_directory_uri()."/img/article.png";
-            }
-            ?>);">
+          <div class="article-img">
             <a href="<?php echo esc_url( get_permalink() ); ?>"></a>
           </div>
           <p class="text-subtitle"><?php echo(date('l @ g:i a',$custom_fields['tf_events_startdate'][0])); ?></p>

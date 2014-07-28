@@ -153,7 +153,7 @@ $args = array(
     'capability_type' => 'post',
     'hierarchical' => false,
     'rewrite' => array( "slug" => "events" ),
-    'supports'=> array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes') ,
+    'supports'=> array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes', 'custom-fields') ,
     'show_in_nav_menus' => true,
     'taxonomies' => array('post_tag','tf_eventcategory'),
 	'menu_position'       => 5

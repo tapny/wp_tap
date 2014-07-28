@@ -1972,7 +1972,10 @@ section.events, section.articles {
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
-    color: inherit; }
+    color: inherit;
+    margin-left: 24px;
+    margin-right: 24px;
+    max-width: 720px; }
   .article-body h1 small, .event-body h1 small,
   .article-body h2 small,
   .event-body h2 small,

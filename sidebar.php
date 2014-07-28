@@ -19,7 +19,7 @@
     <br />
     <div class="col-3">
       <?php
-        $mailchimp_query = new WP_Query(array('name' => 'mailchimp-form'));
+        $mailchimp_query = new WP_Query(array('page_id' => get_page_by_title('mailchimp-form')->ID));
         if ( $mailchimp_query -> have_posts() ) :
           while ( $mailchimp_query->have_posts() ) : $mailchimp_query->the_post(); 
             the_content();
