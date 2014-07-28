@@ -47,11 +47,12 @@
         border:3px solid $green-light;
       }
     }
-    input.email{background-image:url(../img/form-email.png);}
-    input.fname{background-image:url(../img/form-fname.png);}
-    input.lname{background-image:url(../img/form-lname.png);}
+    p {display:inline-block;}
+    input[name="EMAIL"]{background-image:url(../img/form-email.png);}
+    input[name="FNAME"]{background-image:url(../img/form-fname.png);}
+    input[name="LNAME"]{background-image:url(../img/form-lname.png);}
     input{background-size:16px 16px;background-repeat:no-repeat;background-position:$margin/2 50%;}
-    input[type="text"] {
+    input[type="text"],input[type="email"] {
       @include font-text;
       width:200px;
       margin-right:$margin;
@@ -94,7 +95,7 @@
     form {
       width:100%;
 
-      input[type="text"] {
+      input[type="text"],input[type="email"] {
         width:80%;
         display:block;
         margin:0 auto;

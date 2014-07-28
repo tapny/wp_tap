@@ -18,13 +18,15 @@
     </div>
     <br />
     <div class="col-3">
-      <form method="post" id="newsletter-form" class="newsletter-form">
-        <input type="text" name="EMAIL" placeholder="Email Address" class="newsletter-form-input email">
-        <input type="text" name="FNAME" placeholder="First Name" class="newsletter-form-input fname ">
-        <input type="text" name="LNAME" placeholder="Last Name" class="newsletter-form-input lname ">
-        <br />
-        <input type="submit" value="Sign up" name="subscribe" id="newsletter-form-submit">
-      </form>
-      <a href="#" class="close">Close</a>
+      <?php
+        $mailchimp_query = new WP_Query(array('name' => 'mailchimp-form'));
+        if ( $mailchimp_query -> have_posts() ) :
+          while ( $mailchimp_query->have_posts() ) : $mailchimp_query->the_post(); 
+            the_content();
+          endwhile;
+        else: 
+          echo 'No form found!';
+        endif;
+      ?>
     </div>
   </section>

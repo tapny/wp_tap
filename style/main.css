@@ -632,7 +632,7 @@ section.about {
       height: 100%;
       background-repeat: no-repeat;
       background-position: 50% 50%;
-      background-size: 80px;
+      background-size: 120px;
       background-image: url(../img/logo.png); }
       #hamburger h1 span:hover {
         background-color: #fdfdfd; }
@@ -1517,6 +1517,22 @@ section.events, section.articles {
     -o-transition: all 300ms;
     transition: all 300ms; }
     .hero ul li, .image-parallax ul li {
+      background: #00c4b5;
+      /* Old browsers */
+      background: -moz-linear-gradient(-45deg, #00c4b5 0%, #00b29e 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #00c4b5), color-stop(100%, #00b29e));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(-45deg, #00c4b5 0%, #00b29e 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(-45deg, #00c4b5 0%, #00b29e 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(-45deg, #00c4b5 0%, #00b29e 100%);
+      /* IE10+ */
+      background: linear-gradient(225deg, #00c4b5 0%, #00b29e 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2',GradientType=1 );
+      /* IE6-9 fallback on horizontal gradient */
       position: absolute;
       display: block;
       height: 320px;
@@ -1525,11 +1541,15 @@ section.events, section.articles {
       float: left;
       background-size: cover;
       background-position: 50% 50%;
-      -webkit-transition: all 300ms;
-      -moz-transition: all 300ms;
-      -ms-transition: all 300ms;
-      -o-transition: all 300ms;
-      transition: all 300ms; }
+      -webkit-transition: transform 300ms, left 300ms;
+      -moz-transition: transform 300ms, left 300ms;
+      -ms-transition: transform 300ms, left 300ms;
+      -o-transition: transform 300ms, left 300ms;
+      transition: transform 300ms, left 300ms;
+      -webkit-transition: -webkit-transform 300ms, left 300ms;
+      -moz-transition: -moz-transform 300ms, left 300ms;
+      -ms-transition: -ms-transform 300ms, left 300ms;
+      -o-transition: -o-transform 300ms, left 300ms; }
       .hero ul li .hero-outer, .image-parallax ul li .hero-outer {
         display: table;
         width: 80%;
@@ -1548,13 +1568,11 @@ section.events, section.articles {
       .hero ul li.next, .image-parallax ul li.next {
         z-index: 2;
         top: 0;
-        left: 100%;
-        opacity: .5; }
+        left: 100%; }
       .hero ul li.prev, .image-parallax ul li.prev {
         z-index: 2;
         top: 0;
-        left: -100%;
-        opacity: .5; }
+        left: -100%; }
       .hero ul li.prev.next, .image-parallax ul li.prev.next {
         z-index: 2;
         top: 0;
@@ -1709,17 +1727,19 @@ section.events, section.articles {
       .newsletter form input:focus, .social a form input:focus {
         outline: none;
         border: 3px solid #00c4b5; }
-    .newsletter form input.email, .social a form input.email {
+    .newsletter form p, .social a form p {
+      display: inline-block; }
+    .newsletter form input[name="EMAIL"], .social a form input[name="EMAIL"] {
       background-image: url(../img/form-email.png); }
-    .newsletter form input.fname, .social a form input.fname {
+    .newsletter form input[name="FNAME"], .social a form input[name="FNAME"] {
       background-image: url(../img/form-fname.png); }
-    .newsletter form input.lname, .social a form input.lname {
+    .newsletter form input[name="LNAME"], .social a form input[name="LNAME"] {
       background-image: url(../img/form-lname.png); }
     .newsletter form input, .social a form input {
       background-size: 16px 16px;
       background-repeat: no-repeat;
       background-position: 12px 50%; }
-    .newsletter form input[type="text"], .social a form input[type="text"] {
+    .newsletter form input[type="text"], .social a form input[type="text"], .newsletter form input[type="email"], .social a form input[type="email"] {
       color: #333333;
       font-weight: 300;
       font-size: 16px;
@@ -1738,10 +1758,10 @@ section.events, section.articles {
       height: 42px;
       padding: 0 12px 0 36px; }
       @media only screen and (max-width: 798px) {
-        .newsletter form input[type="text"], .social a form input[type="text"] {
+        .newsletter form input[type="text"], .social a form input[type="text"], .newsletter form input[type="email"], .social a form input[type="email"] {
           font-size: 15px; } }
       @media only screen and (max-width: 480px) {
-        .newsletter form input[type="text"], .social a form input[type="text"] {
+        .newsletter form input[type="text"], .social a form input[type="text"], .newsletter form input[type="email"], .social a form input[type="email"] {
           font-size: 14px; } }
     .newsletter form input[type="submit"], .social a form input[type="submit"] {
       -webkit-transition: opacity 300ms;
@@ -1795,7 +1815,7 @@ section.events, section.articles {
       margin: 0 auto; }
     .newsletter form, .social a form {
       width: 100%; }
-      .newsletter form input[type="text"], .social a form input[type="text"] {
+      .newsletter form input[type="text"], .social a form input[type="text"], .newsletter form input[type="email"], .social a form input[type="email"] {
         width: 80%;
         display: block;
         margin: 0 auto;

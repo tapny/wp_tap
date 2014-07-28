@@ -240,6 +240,7 @@
 
     @include prefix(transition,all $duration);
     li {
+      @include gradient($green-light,$green-dark);
       position:absolute;
       display:block;
       height:320px;
@@ -248,7 +249,11 @@
       float:left;
       background-size:cover;
       background-position:50% 50%;
-      @include prefix(transition,all $duration);
+      @include prefix(transition,transform $duration, left $duration);
+      -webkit-transition:-webkit-transform $duration, left $duration;
+      -moz-transition:-moz-transform $duration, left $duration;
+      -ms-transition:-ms-transform $duration, left $duration;
+      -o-transition:-o-transform $duration, left $duration;
       .hero-outer {
         display:table;
         width:80%;
@@ -271,13 +276,11 @@
         z-index:2;
         top:0;
         left:100%;
-        opacity:.5;
       }
       &.prev {
         z-index:2;
         top:0;
         left:-100%;
-        opacity:.5;
       }
       &.prev.next {
         z-index:2;
