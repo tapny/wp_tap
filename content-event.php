@@ -6,10 +6,11 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
     <ul>
       <li><a href="<?php echo get_page_link(get_page_by_title('Events')->ID); ?>">Events</a></li>
       <?php 
-        $event_category = get_terms("tf_eventcategory");
-        if($event_category[0]): 
+        $event_category = get_the_terms(get_the_ID(),"tf_eventcategory");
+        $event_category = reset($event_category);
+        if($event_category): 
       ?>
-      <li><a href="<?php echo get_term_link($event_category[0]); ?>"><?php echo $event_category[0]->name; ?></a></li>
+      <li><a href="<?php echo get_term_link($event_category->term_id,'tf_eventcategory'); ?>"><?php echo $event_category->name; ?></a></li>
       <?php endif; ?>
       <li><a><?php the_title() ?></a></li>
     </ul>

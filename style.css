@@ -61,3 +61,6 @@ ul.page-numbers li {
 }
 
 .page-numbers:hover { text-decoration: none }
+
+.wp-caption {margin:0 auto;font-size:12px;line-height:12px;}
+.wp-caption a img {margin-bottom:0;}

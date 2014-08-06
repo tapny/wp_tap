@@ -515,18 +515,18 @@ function wpse_61041_inner_custom_box($post)
 
     $saved_rank = get_post_meta( $post->ID, 'featured_rank', true);
     if( !$saved_rank )
-        $saved_rank = '99';
+        $saved_rank = '9';
     $fields_rank = array(
-        9 => __('-- Select Rank --', 'wpse'),
-        0 => __('1 (highest)', 'wpse'),
-        1 => __('2', 'wpse'),
-        2 => __('3', 'wpse'),
-        3 => __('4', 'wpse'),
-        4 => __('5', 'wpse'),
-        5 => __('6', 'wpse'),
-        6 => __('7', 'wpse'),
-        7 => __('8', 'wpse'),
-        8 => __('9 (lowest)', 'wpse')
+        '9' => __('-- Select Rank --', 'wpse'),
+        '0' => __('1 (highest)', 'wpse'),
+        '1' => __('2', 'wpse'),
+        '2' => __('3', 'wpse'),
+        '3' => __('4', 'wpse'),
+        '4' => __('5', 'wpse'),
+        '5' => __('6', 'wpse'),
+        '6' => __('7', 'wpse'),
+        '7' => __('8', 'wpse'),
+        '8' => __('9 (lowest)', 'wpse')
     );
 
     ?>
