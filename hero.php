@@ -33,6 +33,13 @@
         while ( $loop->have_posts() ) : $loop->the_post();    
       ?>   
                 <li class="slideshow-<?php echo $loop->current_post; ?>" <?php get_background_image_style(get_post_thumbnail_id()); ?> >
+
+                  <?php 
+                  $custom_array = get_post_custom();
+                  if($custom_array && $custom_array['featured_blur'][0]): 
+                  ?>
+                  <div class="hero-bgimage" <?php get_background_image_style(get_post_thumbnail_id()); ?>></div>
+                  <?php endif; ?>
                   <a class="hero-outer" href="<?php echo get_permalink(); ?>">
                     <div class="hero-inner">
                       <h3><?php 

@@ -529,6 +529,10 @@ function wpse_61041_inner_custom_box($post)
         '8' => __('9 (lowest)', 'wpse')
     );
 
+    $saved_blur = get_post_meta( $post->ID, 'featured_blur', true);
+    if( !$saved_blur )
+        $saved_blur = false;
+
     ?>
         <ul>
             <li>
@@ -536,6 +540,9 @@ function wpse_61041_inner_custom_box($post)
             </li>
             <li>
                 <label class="selectit"><input value="1" type="checkbox" name="featured_rec" <?php echo checked($saved_rec, true, false) ?>> Recommend this post</label>
+            </li>
+            <li>
+                <label class="selectit"><input value="1" type="checkbox" name="featured_blur" <?php echo checked($saved_blur, true, false) ?>> Blur the feautured image</label>
             </li>
             <li>
                 <select name="featured_rank">
@@ -572,6 +579,9 @@ function wpse_61041_save_postdata( $post_id )
       if ( isset($_POST['featured_rank']) ){
             update_post_meta( $post_id, 'featured_rank', $_POST['featured_rank'] );
       } else { update_post_meta( $post_id, 'featured_rank', NULL ); }
+      if ( isset($_POST['featured_blur']) ){
+            update_post_meta( $post_id, 'featured_blur', $_POST['featured_blur'] );
+      } else { update_post_meta( $post_id, 'featured_blur', NULL ); }
 }
 
 

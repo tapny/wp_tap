@@ -19,6 +19,9 @@ $custom_fields = get_post_custom();
     <div class="hero-slide">
       <ul>
         <li <?php get_background_image_style(get_post_thumbnail_id()); ?>>
+          <?php if($custom_fields['featured_blur'][0]): ?>
+          <div class="hero-bgimage" <?php get_background_image_style(get_post_thumbnail_id()); ?>></div>
+          <?php endif; ?>
           <span class="hero-outer">
             <div class="hero-inner">
               <h4><?php the_title() ?></h4>
