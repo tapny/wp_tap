@@ -47,8 +47,8 @@ $custom_address = trim(preg_replace('/([\\n])/', ', ', $custom_fields['tf_events
 
   <section class="event-details">
   <?php if($custom_address): ?>
-    <div class="left" style="background-image:url(<?php echo esc_url('http://maps.googleapis.com/maps/api/staticmap?markers=color:0x009c83%7C'.$custom_address.'&zoom=13&size=600x600&key=AIzaSyCLDq0xsecSmyp0SHATTYW20XF-p5OUq0c'); ?>);">
-      <a href="http://maps.google.com/?q=<?php echo $custom_address; ?>" target="_blank">Get Directions</a>
+    <div class="left" style="background-image:url(<?php echo esc_url('http://maps.googleapis.com/maps/api/staticmap?markers=color:0x009c83%7C'.rawurlencode($custom_address).'&zoom=13&size=600x600&key=AIzaSyCLDq0xsecSmyp0SHATTYW20XF-p5OUq0c'); ?>);">
+      <a href="http://maps.google.com/?q=<?php echo rawurlencode($custom_address); ?>" target="_blank">Get Directions</a>
     </div>
   <?php endif; ?>
     <div class="<?php if($custom_address): ?>right<?php else: ?>full<?php endif; ?>">
